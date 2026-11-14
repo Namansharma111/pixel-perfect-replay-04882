@@ -4,6 +4,7 @@ import { PageHero, Section, IconBadge } from "@/components/site/primitives";
 import { ContactForm } from "@/components/site/ContactForm";
 import { SocialLinks } from "@/components/site/SocialLinks";
 import { FAQList } from "@/components/site/FAQ";
+import { PageWrapper } from "@/components/site/PageWrapper";
 import { pageHead, faqSchema } from "@/lib/seo";
 import { SITE } from "@/config/site";
 
@@ -52,7 +53,7 @@ const CHANNELS = [
 
 function ContactPage() {
   return (
-    <>
+    <PageWrapper>
       <PageHero
         eyebrow="Contact us"
         title={
@@ -128,6 +129,6 @@ function ContactPage() {
           </div>
         </div>
       </Section>
-    </>
+    </PageWrapper>
   );
 }

@@ -80,10 +80,10 @@
 :root {
   --radius: 0.875rem;
 
-  --background: oklch(0.135 0.018 262);
+  --background: #080F35;
   --foreground: oklch(0.985 0.004 95);
-  --navy: oklch(0.2 0.045 264);
-  --navy-deep: oklch(0.165 0.035 264);
+  --navy: #142A82;
+  --navy-deep: #0E1B5A;
   --surface: oklch(0.18 0.028 263);
   --surface-raised: oklch(0.225 0.034 263);
 
@@ -116,11 +116,8 @@
   --gradient-brand: linear-gradient(120deg, var(--brand-yellow), var(--brand-orange));
   --gradient-text: linear-gradient(100deg, oklch(0.93 0.14 95) 0%, var(--brand-yellow) 40%, var(--brand-orange) 100%);
   --gradient-surface: linear-gradient(160deg, oklch(0.21 0.036 264 / 90%), oklch(0.16 0.026 263 / 90%));
-  --gradient-hero:
-    radial-gradient(60% 60% at 80% 20%, oklch(0.72 0.185 48 / 22%) 0%, transparent 60%),
-    radial-gradient(50% 50% at 10% 10%, oklch(0.87 0.165 90 / 14%) 0%, transparent 60%),
-    radial-gradient(80% 60% at 50% 100%, oklch(0.25 0.07 265 / 60%) 0%, transparent 70%);
-  --gradient-section: linear-gradient(180deg, var(--background) 0%, var(--navy-deep) 50%, var(--background) 100%);
+  --gradient-hero: linear-gradient(180deg, #080F35 0%, #0E1B5A 50%, #080F35 100%);
+  --gradient-section: linear-gradient(180deg, #080F35 0%, #0E1B5A 50%, #080F35 100%);
   --shadow-card: 0 1px 0 0 oklch(1 0 0 / 6%) inset, 0 20px 50px -24px oklch(0 0 0 / 70%);
   --shadow-glow: 0 18px 50px -14px color-mix(in oklab, var(--brand-yellow) 45%, transparent);
   --shadow-glow-orange: 0 18px 60px -18px color-mix(in oklab, var(--brand-orange) 55%, transparent);
@@ -149,7 +146,9 @@
     color-scheme: dark;
   }
   body {
-    background-color: var(--color-background);
+    background-color: #080F35;
+    background-image: linear-gradient(180deg, #080F35 0%, #0E1B5A 50%, #080F35 100%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -188,6 +187,16 @@
 }
 @utility bg-gradient-section {
   background-image: var(--gradient-section);
+}
+@utility animate-marquee-infinite {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
+}
+@utility animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 28s linear infinite;
 }
 @utility shadow-card {
   box-shadow: var(--shadow-card);
@@ -272,16 +281,29 @@
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-14px); }
 }
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@keyframes marquee-ltr {
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0%, 0, 0); }
 }
-@keyframes pulse-ring {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  100% { transform: scale(1.6); opacity: 0; }
+
+.marquee-track-ltr {
+  display: flex !important;
+  width: max-content !important;
+  animation: marquee-ltr 28s linear infinite !important;
+  will-change: transform;
+}
+
+.marquee-track-ltr:hover,
+.group:hover .marquee-track-ltr {
+  animation-play-state: paused !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  *:not(.marquee-track-ltr):not(.marquee-track-ltr *),
+  *:not(.marquee-track-ltr):not(.marquee-track-ltr *)::before,
+  *:not(.marquee-track-ltr):not(.marquee-track-ltr *)::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

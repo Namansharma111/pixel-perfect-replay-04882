@@ -1,21 +1,32 @@
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   ArrowUpRight,
   BarChart3,
   Bell,
+  BookOpen,
   CalendarCheck,
+  Camera,
   CheckCircle2,
   Compass,
   Handshake,
   HeartHandshake,
+  HeartPulse,
+  Laptop,
   Lightbulb,
   LineChart,
   MapPin,
   MessageSquareQuote,
+  Palette,
   Rocket,
+  Scale,
+  Search,
   ShieldCheck,
   Sparkles,
+  Sprout,
+  Target,
+  TrendingUp,
   Users,
   Utensils,
   Stethoscope,
@@ -28,6 +39,8 @@ import {
   Gem,
   Car,
   Instagram,
+  Phone,
+  Zap,
 } from "lucide-react";
 import heroImg from "@/assets/hero-growth.jpg";
 import aboutImg from "@/assets/about-studio.jpg";
@@ -40,6 +53,9 @@ import { Section, SectionHeading, Container, IconBadge } from "@/components/site
 import { ServiceCard } from "@/components/site/cards";
 import { FAQList } from "@/components/site/FAQ";
 import { CTASection } from "@/components/site/CTASection";
+import { PortfolioSection } from "@/components/site/PortfolioSection";
+import { LongFormSeoContent } from "@/components/site/LongFormSeoContent";
+import { NorthIndiaArtwork } from "@/components/site/NorthIndiaArtwork";
 import { services } from "@/data/services";
 import { SITE } from "@/config/site";
 import { pageHead, faqSchema } from "@/lib/seo";
@@ -94,6 +110,7 @@ function HomePage() {
       <TrustBar />
       <AboutIntro />
       <ServicesGrid />
+      <PortfolioSection />
       <WhyChoose />
       <Process />
       <Industries />
@@ -101,132 +118,170 @@ function HomePage() {
       <Locations />
       <Testimonials />
       <SeoContent />
-      <Section labelledBy="faq-heading">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <SectionHeading
-              align="left"
-              id="faq-heading"
-              eyebrow="FAQs"
-              title="Questions businesses ask us"
-              description="Straight answers about working with a digital marketing agency in Chandigarh."
-            />
-          </div>
-          <div className="lg:col-span-8">
-            <FAQList faqs={HOME_FAQS} />
-          </div>
-        </div>
-      </Section>
       <CTASection />
+      <LongFormSeoContent />
     </>
   );
 }
 
-/* ---------------- Hero ---------------- */
+/* ---------------- Hero (Redesigned per IMAGE 1 reference) ---------------- */
 function Hero() {
+  const stats = [
+    { value: "50+", label: "Clients Served" },
+    { value: "10", label: "Growth Services" },
+    { value: "1–2 Years", label: "Experience" },
+    { value: "Pan India", label: "Service Reach" },
+  ];
+
   return (
-    <section className="relative -mt-20 overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-gradient-hero" aria-hidden />
-      <div className="absolute inset-0 bg-grid" aria-hidden />
-      <Container className="relative grid items-center gap-14 pb-20 pt-12 lg:grid-cols-12 lg:pb-28 lg:pt-20">
-        <div className="lg:col-span-6">
-          <p className="eyebrow animate-in fade-in slide-in-from-bottom-3 duration-700">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
-            </span>
-            Chandigarh-based digital marketing agency
-          </p>
-          <h1 className="mt-6 text-[2.6rem] font-extrabold leading-[1.04] sm:text-6xl lg:text-[4.2rem] animate-in fade-in slide-in-from-bottom-4 duration-700">
-            Digital Marketing That Turns Your Brand Into a{" "}
-            <span className="text-gradient">Growth Story.</span>
-          </h1>
-          <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground animate-in fade-in slide-in-from-bottom-5 duration-1000">
-            At Social Waale, we help businesses build a powerful digital presence through strategic
-            social media marketing, SEO, paid advertising, creative branding and conversion-focused
-            digital solutions.
-          </p>
-          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-            From building brand awareness to generating meaningful enquiries, we bring strategy,
-            creativity and technology together to help your business move forward.
-          </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild variant="hero" size="xl">
-              <Link to="/contact">
-                Let’s Grow Together <ArrowRight />
-              </Link>
-            </Button>
-            <Button asChild variant="glass" size="xl">
-              <Link to="/services">Explore Our Services</Link>
-            </Button>
-          </div>
-          <div className="mt-10 flex items-center gap-4 text-sm text-muted-foreground">
-            <div className="flex -space-x-2">
-              {[Users, BarChart3, Sparkles].map((Icon, i) => (
-                <span
-                  key={i}
-                  className="grid h-9 w-9 place-items-center rounded-full border-2 border-background bg-surface-raised text-primary"
-                >
-                  <Icon className="h-4 w-4" />
-                </span>
+    <section className="relative -mt-20 overflow-hidden pt-20 bg-gradient-to-b from-[#080F35] via-[#0E1B5A] to-[#080F35] text-white">
+      {/* Background ambient lighting and subtle grid matching Image 1 */}
+      <div
+        className="pointer-events-none absolute -left-32 top-10 h-[34rem] w-[34rem] rounded-full bg-[#142A82]/40 blur-[130px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute right-0 top-1/4 h-[36rem] w-[36rem] rounded-full bg-[#0E1E68]/35 blur-[140px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -bottom-20 left-1/3 h-80 w-80 rounded-full bg-[#FF941E]/10 blur-[120px]"
+        aria-hidden
+      />
+      <div className="absolute inset-0 bg-grid opacity-20" aria-hidden />
+
+      <Container className="relative pb-16 pt-10 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-14">
+          {/* ================= LEFT SIDE ================= */}
+          <div className="lg:col-span-7 xl:col-span-7">
+            {/* 1. Location badge with location pin icon (matching Image 1) */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#FFD84A]/30 bg-[#080F35]/90 px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#FFD84A] shadow-sm backdrop-blur-md transition-colors hover:border-[#FFD84A]/60">
+              <MapPin className="h-3.5 w-3.5 text-[#FFD84A] shrink-0" />
+              <span>CHANDIGARH-BASED DIGITAL MARKETING AGENCY</span>
+            </div>
+
+            {/* 2. Main H1 headline with yellow-to-orange gradient highlight */}
+            <h1 className="mt-5 text-3xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem]">
+              Digital Marketing Agency in Chandigarh That Turns Brands Into{" "}
+              <span className="bg-gradient-to-r from-[#FFD84A] via-[#FFB834] to-[#FF941E] bg-clip-text text-transparent">
+                Growth Stories.
+              </span>
+            </h1>
+
+            {/* 3. Description paragraphs */}
+            <p className="mt-6 text-base leading-relaxed text-[#D5DAE7] sm:text-lg sm:leading-relaxed">
+              Looking for a reliable digital marketing agency in Chandigarh? Social Waale helps
+              businesses across Chandigarh, Punjab, Himachal Pradesh, Haryana and beyond build a
+              stronger online presence through SEO, social media marketing, Google Ads, creative
+              branding and digital growth solutions.
+            </p>
+            <p className="mt-3.5 text-sm leading-relaxed text-[#D5DAE7]/90 sm:text-base sm:leading-relaxed">
+              From building brand awareness to attracting relevant audiences and generating
+              meaningful enquiries, we combine strategy, creativity and technology to move your
+              business forward.
+            </p>
+
+            {/* 4. Two CTA buttons side by side */}
+            <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+              {/* Primary button with yellow/orange gradient and dark text */}
+              <Button
+                asChild
+                size="xl"
+                className="group relative h-13 rounded-full bg-gradient-to-r from-[#FFD84A] to-[#FF941E] px-7 font-bold text-[#080F35] shadow-[0_12px_28px_-6px_rgba(255,148,30,0.45)] transition-all duration-300 hover:scale-[1.02] hover:brightness-105 active:scale-[0.98]"
+              >
+                <Link to="/contact" className="inline-flex items-center gap-2">
+                  <span>Request a Free Quote</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </Button>
+
+              {/* Secondary button: transparent with subtle border and phone icon */}
+              <Button
+                asChild
+                size="xl"
+                className="h-13 rounded-full border border-white/20 bg-white/5 px-6 font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/10 active:scale-[0.98]"
+              >
+                <a href="tel:+919805789363" className="inline-flex items-center gap-2.5">
+                  <Phone className="h-4 w-4 text-[#FFD84A]" />
+                  <span>+91 9805789363</span>
+                </a>
+              </Button>
+            </div>
+
+            {/* 5. Four small trust / statistic indicators below the buttons (matching Image 1) */}
+            <div className="mt-10 grid grid-cols-2 gap-4 border-t border-white/10 pt-6 sm:grid-cols-4 sm:gap-6">
+              {stats.map((item) => (
+                <div key={item.label} className="flex flex-col">
+                  <span className="text-2xl font-extrabold tracking-tight text-[#FFD84A] sm:text-3xl">
+                    {item.value}
+                  </span>
+                  <span className="mt-1 text-xs font-medium uppercase tracking-wider text-[#D5DAE7]">
+                    {item.label}
+                  </span>
+                </div>
               ))}
             </div>
-            <span>
-              Trusted by{" "}
-              <strong className="text-foreground">{SITE.stats.clients} businesses</strong> across
-              North India
-            </span>
           </div>
-        </div>
 
-        <div className="relative lg:col-span-6">
-          <div className="relative mx-auto aspect-square max-w-[560px]">
-            <div className="absolute inset-6 rounded-full bg-primary/20 blur-3xl" aria-hidden />
-            <img
-              src={heroImg}
-              alt="Glowing growth arrows and floating social media and analytics panels representing digital marketing growth"
-              width={1280}
-              height={1280}
-              fetchPriority="high"
-              className="relative h-full w-full rounded-[2.5rem] border border-border object-cover shadow-card"
-            />
-            <div className="glass absolute -left-4 top-10 flex animate-float items-center gap-3 rounded-2xl p-3 pr-5 shadow-card sm:-left-10">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-brand text-primary-foreground">
-                <Bell className="h-5 w-5" />
-              </span>
-              <span>
-                <span className="block text-xs text-muted-foreground">Just now</span>
-                <span className="block text-sm font-bold">New enquiry received</span>
-              </span>
-            </div>
-            <div className="glass absolute -right-3 top-1/2 animate-float-delayed rounded-2xl p-4 shadow-card sm:-right-8">
-              <span className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-                <LineChart className="h-4 w-4 text-primary" /> Organic reach
-              </span>
-              <svg viewBox="0 0 120 40" className="mt-2 h-10 w-32" aria-hidden>
-                <defs>
-                  <linearGradient id="spark" x1="0" x2="1">
-                    <stop offset="0" stopColor="var(--brand-yellow)" />
-                    <stop offset="1" stopColor="var(--brand-orange)" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M2 34 L20 28 L36 30 L54 20 L72 22 L90 10 L118 4"
-                  fill="none"
-                  stroke="url(#spark)"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-            <div className="glass absolute -bottom-4 left-8 flex animate-float items-center gap-3 rounded-2xl p-3 pr-5 shadow-card">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-whatsapp/20 text-whatsapp">
-                <CalendarCheck className="h-5 w-5" />
-              </span>
-              <span>
-                <span className="block text-xs text-muted-foreground">This week</span>
-                <span className="block text-sm font-bold">Content calendar ready</span>
-              </span>
+          {/* ================= RIGHT SIDE (VISUAL CARD) ================= */}
+          <div className="relative mt-8 lg:col-span-5 lg:mt-0 xl:col-span-5">
+            {/* Visual Card Container with subtle float and tilt matching Image 1 */}
+            <div className="relative mx-auto max-w-[500px] lg:max-w-none">
+              {/* Soft ambient back glow behind the white card */}
+              <div
+                className="pointer-events-none absolute -inset-3 rounded-[2.5rem] bg-gradient-to-tr from-[#FFD84A]/20 via-[#142A82]/40 to-[#FF941E]/20 blur-2xl opacity-70"
+                aria-hidden
+              />
+
+              {/* Top-Right Floating Yellow/Orange Badge (slanted like Image 1 "Award-winning • 2024") */}
+              <div className="absolute -top-3.5 right-2 z-30 rotate-[6deg] sm:-top-5 sm:right-0">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#FFD84A] to-[#FF941E] px-3.5 py-1.5 text-[11px] sm:text-xs font-black uppercase tracking-tight text-[#080F35] shadow-[0_8px_20px_-4px_rgba(255,148,30,0.5)]">
+                  <Sparkles className="h-3.5 w-3.5 fill-[#080F35]" />
+                  Your Digital Growth Partner
+                </span>
+              </div>
+
+              {/* The Tilted White Architectural Card (Matching Image 1 Card) */}
+              <div className="group relative rounded-[2rem] bg-white p-5 sm:p-7 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.2)] transition-transform duration-500 hover:rotate-0 rotate-[-3.5deg] sm:rotate-[-4.5deg]">
+                {/* Visual Header / Micro Tag inside card */}
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                    Chandigarh • Punjab • Himachal
+                  </span>
+                </div>
+
+                {/* The Custom Architectural Panorama Artwork */}
+                <div className="mt-3 overflow-hidden rounded-xl bg-gradient-to-b from-slate-50/50 to-white">
+                  <NorthIndiaArtwork className="w-full h-auto drop-shadow-sm transition-transform duration-700 group-hover:scale-[1.02]" />
+                </div>
+
+                {/* Subtitle inside card */}
+                <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3 text-[11px] font-semibold text-slate-500">
+                  <span className="text-slate-700 font-bold">Growing Brands Across North India</span>
+                  <span className="text-amber-600 font-bold">Social Waale™</span>
+                </div>
+              </div>
+
+              {/* Floating Glass Notification Card 1 (Upper Left) */}
+              <div className="glass absolute -left-4 top-12 z-20 hidden sm:flex items-center gap-2.5 rounded-xl border border-white/20 bg-[#080F35]/85 px-3 py-2 text-xs font-semibold text-white shadow-xl backdrop-blur-md animate-float">
+                <span className="grid h-6 w-6 place-items-center rounded-lg bg-[#FFD84A] text-[#080F35]">
+                  <Lightbulb className="h-3.5 w-3.5" />
+                </span>
+                <span>Creative Ideas. Strategic Growth.</span>
+              </div>
+
+              {/* Floating Glass Notification Card 2 (Bottom Right) */}
+              <div className="glass absolute -bottom-4 right-4 z-20 hidden sm:flex items-center gap-2.5 rounded-xl border border-white/20 bg-[#080F35]/85 px-3 py-2 text-xs font-semibold text-white shadow-xl backdrop-blur-md animate-float-delayed">
+                <span className="grid h-6 w-6 place-items-center rounded-lg bg-[#FF941E] text-white">
+                  <Rocket className="h-3.5 w-3.5" />
+                </span>
+                <span>Social Media • SEO • Performance</span>
+              </div>
             </div>
           </div>
         </div>
@@ -235,41 +290,392 @@ function Hero() {
   );
 }
 
-/* ---------------- Trust bar ---------------- */
+/* ---------------- Brand SVG Logos ---------------- */
+function GoogleLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#4285F4"
+        d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.17 0 9.97 0 12s.45 3.83 1.25 5.42l4.03-3.15z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
+      />
+    </svg>
+  );
+}
+
+function FacebookLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#1877F2"
+        d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+      />
+    </svg>
+  );
+}
+
+function InstagramLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <defs>
+        <radialGradient id="ig-grad-marquee" cx="20%" cy="110%" r="140%">
+          <stop offset="0%" stopColor="#fdf497" />
+          <stop offset="10%" stopColor="#fdf497" />
+          <stop offset="45%" stopColor="#fd5949" />
+          <stop offset="60%" stopColor="#d6249f" />
+          <stop offset="90%" stopColor="#285AEB" />
+        </radialGradient>
+      </defs>
+      <rect width="24" height="24" rx="6" fill="url(#ig-grad-marquee)" />
+      <path
+        fill="#ffffff"
+        d="M12 5.838c2.007 0 2.245.008 3.037.043.734.034 1.132.157 1.398.26.351.137.602.3.865.563.263.263.426.514.563.865.103.266.226.664.26 1.398.035.792.043 1.03.043 3.037s-.008 2.245-.043 3.037c-.034.734-.157 1.132-.26 1.398a2.33 2.33 0 0 1-.563.865 2.33 2.33 0 0 1-.865.563c-.266.103-.664.226-1.398.26-.792.035-1.03.043-3.037.043s-2.245-.008-3.037-.043c-.734-.034-1.132-.157-1.398-.26a2.33 2.33 0 0 1-.865-.563 2.33 2.33 0 0 1-.563-.865c-.103-.266-.226-.664-.26-1.398-.035-.792-.043-1.03-.043-3.037s.008-2.245.043-3.037c.034-.734.157-1.132.26-1.398.137-.351.3-.602.563-.865.263-.263.514-.426.865-.563.266-.103.664-.226 1.398-.26.792-.035 1.03-.043 3.037-.043zm0-1.638c-2.041 0-2.298.009-3.1.045-.8.037-1.348.164-1.826.35a3.97 3.97 0 0 0-1.436.935 3.97 3.97 0 0 0-.935 1.436c-.186.478-.313 1.026-.35 1.826-.036.802-.045 1.059-.045 3.1s.009 2.298.045 3.1c.037.8.164 1.348.35 1.826.186.479.447.886.935 1.436.488.55 1.026.81 1.436.935.478.186 1.026.313 1.826.35.802.036 1.059.045 3.1.045s2.298-.009 3.1-.045c.8-.037 1.348-.164 1.826-.35a3.97 3.97 0 0 0 1.436-.935 3.97 3.97 0 0 0 .935-1.436c.186-.478.313-1.026.35-1.826.036-.802.045-1.059.045-3.1s-.009-2.298-.045-3.1c-.037-.8-.164-1.348-.35-1.826a4.19 4.19 0 0 0-.935-1.436 3.97 3.97 0 0 0-1.436-.935c-.478-.186-1.026-.313-1.826-.35-.802-.036-1.059-.045-3.1-.045zm0 3.738a4.262 4.262 0 1 0 0 8.524 4.262 4.262 0 0 0 0-8.524zm0 7.024a2.762 2.762 0 1 1 0-5.524 2.762 2.762 0 0 1 0 5.524zm5.432-7.194a.996.996 0 1 0 0 1.992.996.996 0 0 0 0-1.992z"
+      />
+    </svg>
+  );
+}
+
+function YouTubeLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#FF0000"
+        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
+      />
+      <path fill="#ffffff" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  );
+}
+
+function LinkedInLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#0A66C2"
+        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.778-.773 1.778-1.729V1.73C24 .774 23.205 0 22.225 0z"
+      />
+    </svg>
+  );
+}
+
+function WhatsAppLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#25D366"
+        d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15c-1.5 0-2.97-.4-4.26-1.17l-.3-.18-3.12.82.83-3.04-.2-.31a8.12 8.12 0 0 1-1.25-4.36c0-4.51 3.67-8.18 8.18-8.18 4.51 0 8.18 3.67 8.18 8.18 0 4.51-3.67 8.18-8.18 8.18zm4.49-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.09-.39-.12-.56.12-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"
+      />
+    </svg>
+  );
+}
+
+function MetaLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#0081FB"
+        d="M12 7.02c-1.92 0-3.32 1.3-4.2 2.68-1.08-1.63-2.6-2.68-4.52-2.68C1.45 7.02 0 8.7 0 11.28c0 3.64 3.03 7.7 6.78 7.7 2.22 0 3.89-1.26 5.22-3.16 1.33 1.9 3 3.16 5.22 3.16 3.75 0 6.78-4.06 6.78-7.7 0-2.58-1.45-4.26-3.28-4.26-1.92 0-3.44 1.05-4.52 2.68-.88-1.38-2.28-2.68-4.2-2.68zm-5.22 9.9c-2.3 0-4.14-2.88-4.14-5.64 0-1.35.73-2.2 1.83-2.2 1.57 0 2.87 1.4 3.84 3.1-.73 2.62-1.17 4.74-1.53 4.74zm10.44 0c-.36 0-.8-2.12-1.53-4.74.97-1.7 2.27-3.1 3.84-3.1 1.1 0 1.83.85 1.83 2.2 0 2.76-1.84 5.64-4.14 5.64z"
+      />
+    </svg>
+  );
+}
+
+function XLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#000000"
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      />
+    </svg>
+  );
+}
+
+function PinterestLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        fill="#E60023"
+        d="M12 0a12 12 0 0 0-4.37 23.18c-.06-.98-.12-2.48.02-3.55.13-.98.86-5.83.86-5.83s-.22-.44-.22-1.1c0-1.03.6-1.8 1.34-1.8.63 0 .94.48.94 1.05 0 .64-.4 1.6-.62 2.49-.18.74.37 1.34 1.1 1.34 1.32 0 2.34-1.39 2.34-3.4 0-1.78-1.28-3.02-3.1-3.02-2.12 0-3.37 1.59-3.37 3.23 0 .64.25 1.33.56 1.7.06.07.07.14.05.21-.06.24-.19.78-.22.9-.04.15-.12.18-.28.11-1.05-.49-1.7-2.02-1.7-3.25 0-2.65 1.92-5.08 5.55-5.08 2.91 0 5.18 2.08 5.18 4.85 0 2.9-1.83 5.23-4.37 5.23-.85 0-1.66-.45-1.93-.98l-.53 2c-.19.74-.71 1.67-1.06 2.23A12 12 0 1 0 12 0z"
+      />
+    </svg>
+  );
+}
+
+function SnapchatLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <rect width="24" height="24" rx="6" fill="#FFFC00" />
+      <path
+        fill="#ffffff"
+        stroke="#000000"
+        strokeWidth="1.2"
+        strokeLinejoin="round"
+        d="M12 4.5c-3.1 0-5.1 2.3-5.1 4.7 0 .8.2 2 .5 2.5-.3.4-1 .6-1.5.7-.3.1-.4.3-.3.5.2.4.9.7 1.7.7.1.6.4 1.5 1.2 1.7.7.2 1.4-.4 1.8-.7.5.3 1.1.5 1.7.5s1.2-.2 1.7-.5c.4.3 1.1.9 1.8.7.8-.2 1.1-1.1 1.2-1.7.8 0 1.5-.3 1.7-.7.1-.2 0-.4-.3-.5-.5-.1-1.2-.3-1.5-.7.3-.5.5-1.7.5-2.5 0-2.4-2-4.7-5.1-4.7z"
+      />
+    </svg>
+  );
+}
+
+/* ---------------- Trust bar (Redesigned per IMAGE 1 reference) ---------------- */
 function TrustBar() {
-  const items = [
-    { value: SITE.stats.clients, label: "Clients served", Icon: Users },
-    { value: SITE.stats.services, label: "Digital marketing services", Icon: Sparkles },
-    { value: "Chandigarh", label: "Based & serving North India", Icon: MapPin },
-    { value: SITE.stats.experience, label: "Of focused agency experience", Icon: Rocket },
+  const sampleLogos = [
+    {
+      name: "Google",
+      tag: "SEARCH & ADS",
+      Logo: GoogleLogo,
+    },
+    {
+      name: "Facebook",
+      tag: "META NETWORK",
+      Logo: FacebookLogo,
+    },
+    {
+      name: "Instagram",
+      tag: "REELS & SOCIAL",
+      Logo: InstagramLogo,
+    },
+    {
+      name: "YouTube",
+      tag: "VIDEO & SHORTS",
+      Logo: YouTubeLogo,
+    },
+    {
+      name: "LinkedIn",
+      tag: "B2B & OUTREACH",
+      Logo: LinkedInLogo,
+    },
+    {
+      name: "WhatsApp",
+      tag: "DIRECT CHAT & CRM",
+      Logo: WhatsAppLogo,
+    },
+    {
+      name: "Meta",
+      tag: "PERFORMANCE ADS",
+      Logo: MetaLogo,
+    },
+    {
+      name: "X (Twitter)",
+      tag: "TRENDS & PR",
+      Logo: XLogo,
+    },
+    {
+      name: "Pinterest",
+      tag: "VISUAL DISCOVERY",
+      Logo: PinterestLogo,
+    },
+    {
+      name: "Snapchat",
+      tag: "AR & YOUNG AUDIENCE",
+      Logo: SnapchatLogo,
+    },
   ];
+
+  const stats = [
+    {
+      value: "50+",
+      title: "Clients Served",
+      description: "Across diverse North India businesses",
+    },
+    {
+      value: "10",
+      title: "Digital Marketing Services",
+      description: "Full-funnel digital growth solutions",
+    },
+    {
+      value: "1–2 Years",
+      title: "Agency Experience",
+      description: "Focused & transparent execution",
+    },
+    {
+      value: "Pan India",
+      title: "Service Reach",
+      description: "Chandigarh, Tricity & nationwide",
+    },
+  ];
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const isHoveredRef = useRef(false);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    let animId: number;
+    let pos = -50;
+    let lastTime = performance.now();
+
+    const loop = (now: number) => {
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+
+      // Check whether CSS animation is running natively
+      const style = window.getComputedStyle(el);
+      const isCssRunning =
+        style.animationName.includes("marquee-ltr") &&
+        style.animationPlayState === "running" &&
+        parseFloat(style.animationDuration) > 0.01;
+
+      // If CSS animation is not running (e.g. reduced-motion override), drive smoothly with JS
+      if (!isCssRunning && !isHoveredRef.current) {
+        // Move from -50% to 0% over 26 seconds (Left to Right ->)
+        pos += dt * (50 / 26);
+        if (pos >= 0) {
+          pos = -50;
+        }
+        el.style.transform = `translate3d(${pos}%, 0, 0)`;
+      }
+
+      animId = requestAnimationFrame(loop);
+    };
+
+    animId = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
   return (
     <section
-      aria-label="Why businesses trust Social Waale"
-      className="relative border-y border-border bg-navy-deep/70"
+      aria-label="Trusted by Ambitious Brands"
+      className="relative overflow-hidden border-y border-[#142A82]/40 bg-gradient-to-b from-[#080F35] via-[#0E1B5A] to-[#080F35] py-16 sm:py-20 lg:py-24 text-white"
     >
-      <Container className="grid grid-cols-2 gap-px lg:grid-cols-4">
-        {items.map(({ value, label, Icon }) => (
-          <div key={label} className="flex items-center gap-4 px-2 py-8 sm:px-6">
-            <IconBadge>
-              <Icon className="h-5 w-5" />
-            </IconBadge>
-            <div>
-              <p className="text-2xl font-extrabold text-foreground sm:text-3xl">{value}</p>
-              <p className="text-xs text-muted-foreground sm:text-sm">{label}</p>
-            </div>
+      {/* Background ambient lighting */}
+      <div
+        className="pointer-events-none absolute -top-20 left-1/2 h-72 w-[42rem] -translate-x-1/2 rounded-full bg-[#142A82]/30 blur-[130px]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-1/4 h-60 w-60 rounded-full bg-[#FF941E]/10 blur-[100px]"
+        aria-hidden
+      />
+
+      <Container className="relative">
+        {/* 1. Centered Section Heading */}
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#FFD84A]/30 bg-[#080F35]/90 px-4 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#FFD84A] shadow-sm backdrop-blur-md">
+            <span>✦</span>
+            <span>TRUSTED BY BUSINESSES ACROSS NORTH INDIA</span>
           </div>
-        ))}
+
+          <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] leading-[1.18]">
+            Trusted by{" "}
+            <span className="bg-gradient-to-r from-[#FFD84A] via-[#FFB834] to-[#FF941E] bg-clip-text text-transparent">
+              Ambitious Brands
+            </span>{" "}
+            & Growing Businesses
+          </h2>
+
+          <p className="mt-4 text-base leading-relaxed text-[#D5DAE7] sm:text-lg">
+            From emerging startups to established businesses, Social Waale helps brands build stronger digital identities and meaningful online connections.
+          </p>
+        </div>
       </Container>
-      <div className="overflow-hidden border-t border-border py-4">
-        <div className="flex w-max animate-marquee gap-10 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground/70">
-          {[...services, ...services].map((s, i) => (
-            <span key={i} className="flex items-center gap-10">
-              {s.name} <span className="text-primary">✦</span>
-            </span>
-          ))}
+
+      {/* Embedded CSS animation for guaranteed continuous Left-to-Right scrolling */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes marquee-ltr {
+          0% {
+            transform: translate3d(-50%, 0, 0);
+          }
+          100% {
+            transform: translate3d(0%, 0, 0);
+          }
+        }
+        .marquee-track-ltr {
+          display: flex !important;
+          width: max-content !important;
+          animation: marquee-ltr 26s linear infinite !important;
+          will-change: transform;
+        }
+        .group:hover .marquee-track-ltr,
+        .marquee-track-ltr:hover {
+          animation-play-state: paused !important;
+        }
+      `}} />
+
+      {/* 2. Continuously Scrolling Brand Logos (Infinite Marquee Left to Right) */}
+      <div
+        className="relative mt-12 sm:mt-14 w-full overflow-hidden group"
+        onMouseEnter={() => { isHoveredRef.current = true; }}
+        onMouseLeave={() => { isHoveredRef.current = false; }}
+      >
+        {/* Subtle gradient edge fades */}
+        <div
+          className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-20 sm:w-36 bg-gradient-to-r from-[#080F35] to-transparent"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-20 sm:w-36 bg-gradient-to-l from-[#080F35] to-transparent"
+          aria-hidden
+        />
+
+        {/* Scrolling track: duplicated 10+10 items for seamless -50% to 0% loop (Left to Right ->) */}
+        <div
+          ref={trackRef}
+          className="marquee-track-ltr flex w-max gap-4 sm:gap-5 py-2"
+        >
+          {[...sampleLogos, ...sampleLogos].map((b, idx) => {
+            const Logo = b.Logo;
+
+            return (
+              <div
+                key={`${b.name}-${idx}`}
+                className="flex h-18 sm:h-20 min-w-[210px] sm:min-w-[230px] items-center gap-3.5 rounded-2xl border border-slate-200/90 bg-white px-5 py-3 text-slate-900 shadow-[0_4px_18px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:scale-105 select-none shrink-0"
+              >
+                <div className="grid h-10 w-10 sm:h-11 sm:w-11 place-items-center rounded-xl bg-slate-50 border border-slate-100 p-1.5 shrink-0">
+                  <Logo className="h-full w-full object-contain" />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-sm sm:text-base font-bold text-slate-900 tracking-tight leading-tight">
+                    {b.name}
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 mt-0.5">
+                    {b.tag}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
+
+      {/* 3. Four Statistic Cards in One Horizontal Row */}
+      <Container className="relative mt-12 sm:mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {stats.map((s) => (
+            <div
+              key={s.title}
+              className="group relative rounded-2xl sm:rounded-3xl border border-[#142A82]/50 bg-[#0B1540]/60 p-6 sm:p-7 text-center shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-[#FFD84A]/40 hover:shadow-[0_16px_40px_-10px_rgba(20,42,130,0.5)]"
+            >
+              {/* Subtle top accent highlight on hover */}
+              <div
+                className="pointer-events-none absolute inset-x-0 -top-px mx-auto h-px w-2/3 bg-gradient-to-r from-transparent via-[#FFD84A]/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                aria-hidden
+              />
+              <p className="text-4xl sm:text-5xl font-black tracking-tight bg-gradient-to-r from-[#FFD84A] via-[#FFB834] to-[#FF941E] bg-clip-text text-transparent">
+                {s.value}
+              </p>
+              <h3 className="mt-3 text-base sm:text-lg font-bold text-white">
+                {s.title}
+              </h3>
+              <p className="mt-1.5 text-xs sm:text-sm text-[#D5DAE7]/80 leading-relaxed">
+                {s.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Container>
     </section>
   );
 }
@@ -429,53 +835,311 @@ function WhyChoose() {
   );
 }
 
-/* ---------------- Process ---------------- */
+/* ---------------- Process (6-Step Interactive Timeline) ---------------- */
+const PROCESS_STEPS = [
+  {
+    phase: "PHASE 01",
+    num: "01",
+    title: "Understand",
+    text: "We learn about your business, audience, industry, competitors, and objectives.",
+    Icon: Search,
+  },
+  {
+    phase: "PHASE 02",
+    num: "02",
+    title: "Strategize",
+    text: "We identify opportunities and develop a marketing strategy around your growth goals.",
+    Icon: Target,
+  },
+  {
+    phase: "PHASE 03",
+    num: "03",
+    title: "Create",
+    text: "We develop content, campaigns, creatives, websites, and other required marketing assets.",
+    Icon: Palette,
+  },
+  {
+    phase: "PHASE 04",
+    num: "04",
+    title: "Launch",
+    text: "We execute your SEO, social media, advertising, content, or digital campaigns.",
+    Icon: Zap,
+  },
+  {
+    phase: "PHASE 05",
+    num: "05",
+    title: "Analyze",
+    text: "We review available performance data to understand audience response and campaign results.",
+    Icon: BarChart3,
+  },
+  {
+    phase: "PHASE 06",
+    num: "06",
+    title: "Optimize",
+    text: "We refine the strategy and marketing activities based on insights and changing opportunities.",
+    Icon: TrendingUp,
+  },
+];
+
 function Process() {
-  const steps = [
-    {
-      title: "Discover",
-      text: "A free discovery call to understand your business, audience, goals and current digital presence.",
-    },
-    {
-      title: "Strategise",
-      text: "A clear plan covering channels, content themes, budgets, timelines and the results we’ll track.",
-    },
-    {
-      title: "Create",
-      text: "Our team produces creatives, content, campaigns and pages that reflect your brand.",
-    },
-    {
-      title: "Launch",
-      text: "Campaigns go live with proper tracking so every enquiry and click is measured.",
-    },
-    {
-      title: "Optimise & Grow",
-      text: "We review performance regularly, refine what works and scale what brings results.",
-    },
-  ];
+  const [activeStep, setActiveStep] = useState(0);
+  const [isInteracting, setIsInteracting] = useState(false);
+  const [lineFill, setLineFill] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Trigger progressive fill for current step's connecting line
+  useEffect(() => {
+    setLineFill(false);
+    const fillTimer = setTimeout(() => {
+      setLineFill(true);
+    }, 80);
+    return () => clearTimeout(fillTimer);
+  }, [activeStep]);
+
+  // Pause progression when outside viewport
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry) {
+          setIsInView(entry.isIntersecting);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Sequential progression: Phase 01 -> Phase 02 -> ... -> Phase 06 -> loop
+  useEffect(() => {
+    if (!isInView || isInteracting) return;
+    const interval = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % PROCESS_STEPS.length);
+    }, 2800);
+    return () => clearInterval(interval);
+  }, [isInView, isInteracting]);
+
+  const handleStepSelect = (index: number) => {
+    setActiveStep(index);
+    setIsInteracting(true);
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, 4500);
+  };
+
+  const handleContainerMouseLeave = () => {
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsInteracting(false);
+    }, 800);
+  };
+
   return (
     <Section labelledBy="process-heading" className="bg-gradient-section">
-      <SectionHeading
-        id="process-heading"
-        eyebrow="Our working process"
-        title="A simple, proven way of working"
-        description="No confusion, no guesswork. Here’s how we take your brand from where it is today to where you want it to be."
-      />
-      <ol className="relative mt-16 grid gap-6 md:grid-cols-5">
-        <div
-          className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-brand opacity-40 md:block"
-          aria-hidden
+      <div ref={sectionRef} className="relative">
+        <SectionHeading
+          id="process-heading"
+          eyebrow="Our working process"
+          title={
+            <>
+              A simple, proven <span className="text-gradient">way of working</span>
+            </>
+          }
+          description="No confusion, no guesswork. Here’s how we take your brand from where it is today to where you want it to be."
         />
-        {steps.map((s, i) => (
-          <li key={s.title} className="reveal relative">
-            <span className="relative z-10 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-brand text-lg font-extrabold text-primary-foreground shadow-glow">
-              {i + 1}
-            </span>
-            <h3 className="mt-5 text-lg font-bold">{s.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-          </li>
-        ))}
-      </ol>
+
+        {/* ---------------- DESKTOP 6-STEP HORIZONTAL ROW (IMAGE 1 SPEC) ---------------- */}
+        <div
+          className="hidden lg:block relative mt-16"
+          onMouseLeave={handleContainerMouseLeave}
+        >
+          <div className="grid grid-cols-6 gap-6 relative">
+            {PROCESS_STEPS.map((step, idx) => {
+              const isActive = activeStep === idx;
+              const isPast = idx < activeStep;
+              const IconComponent = step.Icon;
+
+              return (
+                <div
+                  key={step.phase}
+                  onMouseEnter={() => handleStepSelect(idx)}
+                  onClick={() => handleStepSelect(idx)}
+                  className="group relative flex flex-col items-start text-left cursor-pointer transition-transform duration-300"
+                >
+                  {/* Connecting Line to next step (behind icons, steps 0..4) */}
+                  {idx < PROCESS_STEPS.length - 1 && (
+                    <div
+                      className="absolute left-[36px] top-[36px] -translate-y-1/2 w-[calc(100%+1.5rem)] h-[2.5px] pointer-events-none z-0"
+                      aria-hidden="true"
+                    >
+                      {/* Inactive line track */}
+                      <div className="w-full h-full bg-[#FFD4A3]/35 rounded-full" />
+                      {/* Active progressive fill */}
+                      <div
+                        className={`absolute top-0 left-0 h-full bg-gradient-to-r from-[#FF941E] via-[#FFB03A] to-[#FFD84A] rounded-full transition-all shadow-[0_0_10px_rgba(255,148,30,0.6)] ${
+                          isPast
+                            ? "w-full duration-300"
+                            : isActive && lineFill
+                            ? "w-full duration-[2400ms] ease-linear"
+                            : "w-0 duration-300"
+                        }`}
+                      />
+                    </div>
+                  )}
+
+                  {/* Icon Box with Badge */}
+                  <div className="relative z-10 mb-6">
+                    {/* Active Outer Glow */}
+                    <div
+                      className={`absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#FF941E] to-[#FFD84A] blur-sm transition-opacity duration-500 ${
+                        isActive ? "opacity-75" : "opacity-0"
+                      }`}
+                    />
+
+                    <div
+                      className={`relative w-[72px] h-[72px] rounded-2xl flex items-center justify-center transition-all duration-300 select-none ${
+                        isActive
+                          ? "bg-gradient-to-br from-[#FF941E] via-[#FF8000] to-[#FFA726] text-white shadow-[0_0_24px_rgba(255,148,30,0.65),0_8px_16px_rgba(255,120,0,0.35)] scale-105 border-2 border-[#FFE082]"
+                          : "bg-white text-slate-700 border-2 border-[#FFD4A3] shadow-md group-hover:border-[#FF941E] group-hover:shadow-lg"
+                      }`}
+                    >
+                      <IconComponent
+                        className={`w-7 h-7 transition-all duration-300 ${
+                          isActive
+                            ? "text-white stroke-[2.2] scale-110"
+                            : "text-[#E65100] stroke-[1.8] group-hover:scale-105"
+                        }`}
+                      />
+
+                      {/* Small circular numbered badge at top-right */}
+                      <div
+                        className={`absolute -top-2.5 -right-2.5 w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-black transition-all duration-300 shadow-md ${
+                          isActive
+                            ? "bg-white text-[#E65100] border-2 border-[#FF941E] scale-110 shadow-orange-500/30"
+                            : "bg-[#080F35] text-white border-2 border-white/60"
+                        }`}
+                      >
+                        {step.num}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Uppercase Phase Label */}
+                  <span
+                    className={`text-xs font-bold uppercase tracking-wider transition-colors duration-300 ${
+                      isActive ? "text-[#FFB03A]" : "text-[#FF941E]"
+                    }`}
+                  >
+                    {step.phase}
+                  </span>
+
+                  {/* Step Heading */}
+                  <h3
+                    className={`mt-1.5 text-lg font-bold leading-snug transition-all duration-300 ${
+                      isActive
+                        ? "text-[#FF941E] font-black"
+                        : "text-white group-hover:text-[#FFD4A3]"
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+
+                  {/* Step Description */}
+                  <p className="mt-2 text-xs xl:text-sm text-[#D5DAE7]/90 leading-relaxed font-normal">
+                    {step.text}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ---------------- MOBILE & TABLET VERTICAL TIMELINE ---------------- */}
+        <div className="lg:hidden relative mt-12 space-y-8 pl-3 sm:pl-6">
+          {/* Continuous vertical connecting line behind icons */}
+          <div
+            className="absolute left-[31px] sm:left-[43px] top-7 bottom-7 w-[2.5px] -translate-x-1/2 pointer-events-none"
+            aria-hidden="true"
+          >
+            {/* Base line track */}
+            <div className="w-full h-full bg-[#FFD4A3]/35 rounded-full" />
+            {/* Active vertical progress fill */}
+            <div
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#FF941E] via-[#FFB03A] to-[#FFD84A] rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(255,148,30,0.7)]"
+              style={{
+                height: `${(activeStep / (PROCESS_STEPS.length - 1)) * 100}%`,
+              }}
+            />
+          </div>
+
+          {PROCESS_STEPS.map((step, idx) => {
+            const isActive = activeStep === idx;
+            const IconComponent = step.Icon;
+
+            return (
+              <div
+                key={step.phase}
+                onClick={() => handleStepSelect(idx)}
+                className="relative flex items-start gap-4 sm:gap-6 cursor-pointer group"
+              >
+                {/* Icon box */}
+                <div className="relative shrink-0 z-10">
+                  <div
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 select-none ${
+                      isActive
+                        ? "bg-gradient-to-br from-[#FF941E] via-[#FF8000] to-[#FFA726] text-white shadow-[0_0_20px_rgba(255,148,30,0.6)] scale-105 border-2 border-[#FFE082]"
+                        : "bg-white text-slate-700 border-2 border-[#FFD4A3] shadow-md"
+                    }`}
+                  >
+                    <IconComponent
+                      className={`w-6 h-6 transition-transform duration-300 ${
+                        isActive ? "text-white stroke-[2.2]" : "text-[#E65100] stroke-[1.8]"
+                      }`}
+                    />
+                    {/* Top-Right Badge */}
+                    <div
+                      className={`absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black transition-all duration-300 shadow ${
+                        isActive
+                          ? "bg-white text-[#E65100] border border-[#FF941E]"
+                          : "bg-[#080F35] text-white border border-white/40"
+                      }`}
+                    >
+                      {step.num}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="pt-0.5 flex-1 text-left">
+                  <span
+                    className={`text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 ${
+                      isActive ? "text-[#FFB03A]" : "text-[#FF941E]"
+                    }`}
+                  >
+                    {step.phase}
+                  </span>
+                  <h3
+                    className={`text-base sm:text-lg font-bold transition-colors duration-300 ${
+                      isActive ? "text-[#FF941E] font-black" : "text-white"
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+                  <p className="mt-1 text-xs sm:text-sm text-[#D5DAE7]/90 leading-relaxed font-normal">
+                    {step.text}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </Section>
   );
 }

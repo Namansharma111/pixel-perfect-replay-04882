@@ -10,6 +10,7 @@ import {
 import { ArticleCard, ServiceCard } from "@/components/site/cards";
 import { FAQList } from "@/components/site/FAQ";
 import { CTASection } from "@/components/site/CTASection";
+import { PageWrapper } from "@/components/site/PageWrapper";
 import { Button } from "@/components/ui/button";
 import {
   CATEGORY_IMAGES,
@@ -118,9 +119,9 @@ function ArticlePage() {
   const path = `/articles/${article.slug}`;
 
   return (
-    <>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-gradient-hero" aria-hidden />
+    <PageWrapper>
+      <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-[#080F35] via-[#0E1B5A] to-[#080F35]">
+        <div className="absolute inset-0 bg-grid opacity-20" aria-hidden />
         <Container className="relative pb-12 pt-10 lg:pt-14">
           <Breadcrumbs
             items={[
@@ -244,6 +245,6 @@ function ArticlePage() {
       </Section>
 
       <CTASection />
-    </>
+    </PageWrapper>
   );
 }

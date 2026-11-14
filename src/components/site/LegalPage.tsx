@@ -1,4 +1,5 @@
 import { PageHero, Container } from "./primitives";
+import { PageWrapper } from "./PageWrapper";
 import type { LegalSection } from "@/data/types";
 import { formatDate } from "@/data/articles";
 
@@ -16,7 +17,7 @@ export function LegalPage({
   sections: LegalSection[];
 }) {
   return (
-    <>
+    <PageWrapper>
       <PageHero
         eyebrow="Legal"
         title={title}
@@ -46,6 +47,6 @@ export function LegalPage({
           ))}
         </div>
       </Container>
-    </>
+    </PageWrapper>
   );
 }

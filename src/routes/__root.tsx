@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -174,6 +175,8 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -184,7 +187,14 @@ function RootComponent() {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="main">
+      <main
+        id="main"
+        className={
+          isHome
+            ? undefined
+            : "min-h-screen bg-gradient-to-b from-[#080F35] via-[#0E1B5A] to-[#080F35]"
+        }
+      >
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </main>

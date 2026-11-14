@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/social-waale-logo.jpg.asset.json";
+import logoImg from "@/assets/social-waale-logo.jpg";
 import { cn } from "@/lib/utils";
 
 export function LogoMark({ size = 44, className }: { size?: number; className?: string }) {
   return (
     <img
-      src={logo.url}
+      src={logoImg}
       alt="Social Waale logo"
       width={size}
       height={size}

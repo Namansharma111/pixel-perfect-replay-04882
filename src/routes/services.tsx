@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section, SectionHeading } from "@/components/site/primitives";
 import { ServiceCard } from "@/components/site/cards";
 import { CTASection } from "@/components/site/CTASection";
+import { PageWrapper } from "@/components/site/PageWrapper";
 import { services } from "@/data/services";
 import { pageHead, organizationRef } from "@/lib/seo";
 import { absoluteUrl } from "@/config/site";
@@ -40,7 +41,7 @@ export const Route = createFileRoute("/services")({
 
 function ServicesPage() {
   return (
-    <>
+    <PageWrapper>
       <PageHero
         eyebrow="Our services"
         title={
@@ -70,6 +71,6 @@ function ServicesPage() {
         title="Not sure which service you need?"
         description="Tell us about your business and goals. We’ll suggest the right mix — even if it’s just one service to start with."
       />
-    </>
+    </PageWrapper>
   );
 }

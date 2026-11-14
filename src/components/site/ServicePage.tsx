@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section, SectionHeading, PageHero, IconBadge, Container } from "./primitives";
+import { PageWrapper } from "./PageWrapper";
 import { ServiceCard, ArticleCard } from "./cards";
 import { FAQList } from "./FAQ";
 import { CTASection } from "./CTASection";
@@ -64,7 +65,7 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
   const defaultService = toServiceOption(s.name);
 
   return (
-    <>
+    <PageWrapper>
       <PageHero
         eyebrow={s.heroEyebrow}
         title={s.h1}
@@ -333,6 +334,6 @@ export function ServicePage({ slug }: { slug: ServiceSlug }) {
         title={`Ready to grow with ${s.shortName}?`}
         whatsappText={`Hi Social Waale, I’d like a free consultation for ${s.name}.`}
       />
-    </>
+    </PageWrapper>
   );
 }

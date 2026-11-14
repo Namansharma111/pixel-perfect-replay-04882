@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, Section } from "@/components/site/primitives";
 import { ArticleCard } from "@/components/site/cards";
 import { CTASection } from "@/components/site/CTASection";
+import { PageWrapper } from "@/components/site/PageWrapper";
 import { articles } from "@/data/articles";
 import { pageHead } from "@/lib/seo";
 import { absoluteUrl } from "@/config/site";
@@ -38,7 +39,7 @@ export const Route = createFileRoute("/articles/")({
 function ArticlesPage() {
   const [featured, ...rest] = articles;
   return (
-    <>
+    <PageWrapper>
       <PageHero
         eyebrow="Articles"
         title={
@@ -65,6 +66,6 @@ function ArticlesPage() {
         </div>
       </Section>
       <CTASection />
-    </>
+    </PageWrapper>
   );
 }

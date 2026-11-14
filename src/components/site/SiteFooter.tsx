@@ -21,7 +21,7 @@ const linkCls = "text-sm text-muted-foreground transition-colors hover:text-fore
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-navy-deep">
+    <footer className="relative overflow-hidden border-t border-border bg-gradient-to-b from-[#080F35] via-[#0E1B5A] to-[#080F35]">
       <div className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-5 pb-10 pt-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">

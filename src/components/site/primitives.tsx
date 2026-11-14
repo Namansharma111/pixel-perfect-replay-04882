@@ -112,9 +112,8 @@ export function PageHero({
   aside?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden border-b border-border">
-      <div className="absolute inset-0 bg-gradient-hero" aria-hidden />
-      <div className="absolute inset-0 bg-grid" aria-hidden />
+    <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-[#080F35] via-[#0E1B5A] to-[#080F35]">
+      <div className="absolute inset-0 bg-grid opacity-20" aria-hidden />
       <Container className="relative pb-16 pt-10 lg:pb-24 lg:pt-14">
         {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
         <div className={cn("mt-10 grid items-center gap-12", aside && "lg:grid-cols-12")}>

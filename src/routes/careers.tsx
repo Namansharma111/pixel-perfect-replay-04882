@@ -3,6 +3,7 @@ import { BookOpen, Lightbulb, Rocket, Users } from "lucide-react";
 import careersImg from "@/assets/careers-team.jpg";
 import { PageHero, Section, SectionHeading, IconBadge } from "@/components/site/primitives";
 import { CareerForm } from "@/components/site/CareerForm";
+import { PageWrapper } from "@/components/site/PageWrapper";
 import { pageHead } from "@/lib/seo";
 import { SITE } from "@/config/site";
 
@@ -48,7 +49,7 @@ export const Route = createFileRoute("/careers")({
 
 function CareersPage() {
   return (
-    <>
+    <PageWrapper>
       <PageHero
         eyebrow="Careers"
         title={
@@ -118,6 +119,6 @@ function CareersPage() {
           </div>
         </div>
       </Section>
-    </>
+    </PageWrapper>
   );
 }

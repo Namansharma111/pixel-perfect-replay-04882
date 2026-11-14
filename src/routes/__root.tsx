@@ -12,26 +12,35 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteHeader } from "@/components/site/SiteHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { NorthIndiaSection } from "@/components/site/NorthIndiaSection";
+import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { SITE, absoluteUrl } from "@/config/site";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden px-5 py-24">
+      <div className="absolute inset-0 bg-gradient-hero" aria-hidden />
+      <div className="relative max-w-xl text-center">
+        <p className="text-gradient text-8xl font-extrabold">404</p>
+        <h1 className="mt-4 text-3xl font-extrabold">This page took a different route.</h1>
+        <p className="mt-4 text-muted-foreground">
+          The page you’re looking for doesn’t exist or may have moved. Let’s get you back on track.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link to="/" className="rounded-full bg-gradient-brand px-6 py-3 text-sm font-bold text-primary-foreground shadow-glow">
+            Back to home
+          </Link>
+          <Link to="/services" className="glass rounded-full px-6 py-3 text-sm font-semibold text-foreground">
+            Explore services
+          </Link>
+          <Link to="/contact" className="glass rounded-full px-6 py-3 text-sm font-semibold text-foreground">
+            Contact us
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -75,27 +84,59 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    // Replace these placeholders with the app's name and description when first building the app.
-    // Each content route, / included, must still set its own head(). Never add og:image or
-    // twitter:image here: every page without its own would inherit the root's preview image.
+    // Page-specific title/description/canonical live in each route's head().
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Social Waale — Digital Marketing Agency in Chandigarh" },
+      { name: "description", content: SITE.description },
+      { name: "author", content: "Social Waale" },
+      { name: "theme-color", content: "#0b0f1a" },
+      { property: "og:site_name", content: "Social Waale" },
+      { property: "og:locale", content: "en_IN" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": absoluteUrl("/#organization"),
+          name: SITE.name,
+          url: absoluteUrl("/"),
+          logo: absoluteUrl("/favicon.png"),
+          description: SITE.description,
+          telephone: SITE.phone,
+          email: SITE.email,
+          address: { "@type": "PostalAddress", addressLocality: "Chandigarh", addressCountry: "IN" },
+          areaServed: [...SITE.locations, "India"].map((name) => ({ "@type": "Place", name })),
+          sameAs: Object.values(SITE.socials),
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: SITE.name,
+          url: absoluteUrl("/"),
+          inLanguage: "en-IN",
+          publisher: { "@id": absoluteUrl("/#organization") },
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -106,7 +147,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <HeadContent />
       </head>
@@ -123,8 +164,20 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Skip to content
+      </a>
+      <SiteHeader />
+      <main id="main">
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </main>
+      <NorthIndiaSection />
+      <SiteFooter />
+      <FloatingWhatsApp />
     </QueryClientProvider>
   );
 }

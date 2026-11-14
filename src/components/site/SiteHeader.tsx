@@ -62,7 +62,8 @@ export function SiteHeader() {
 
           <div className="group relative">
             <Link to="/services" className={cn(linkCls, "inline-flex items-center gap-1")}>
-              Services <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+              Services{" "}
+              <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
             </Link>
             <div className="invisible absolute left-1/2 top-full w-[760px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
               <div className="glass grid grid-cols-2 gap-1 rounded-3xl p-3 shadow-card">
@@ -78,7 +79,9 @@ export function SiteHeader() {
                         <Icon className="h-4 w-4" />
                       </span>
                       <span>
-                        <span className="block text-sm font-semibold text-foreground">{s.name}</span>
+                        <span className="block text-sm font-semibold text-foreground">
+                          {s.name}
+                        </span>
                         <span className="mt-0.5 line-clamp-1 block text-xs text-muted-foreground">
                           {s.tagline}
                         </span>
@@ -133,7 +136,12 @@ export function SiteHeader() {
         >
           <nav aria-label="Mobile" className="flex flex-col gap-1">
             {NAV.map((n) => (
-              <Link key={n.to} to={n.to} onClick={close} className="rounded-2xl px-4 py-3 text-lg font-semibold hover:bg-accent">
+              <Link
+                key={n.to}
+                to={n.to}
+                onClick={close}
+                className="rounded-2xl px-4 py-3 text-lg font-semibold hover:bg-accent"
+              >
                 {n.label}
               </Link>
             ))}
@@ -144,11 +152,17 @@ export function SiteHeader() {
               aria-expanded={mobileServices}
             >
               Services
-              <ChevronDown className={cn("h-5 w-5 transition-transform", mobileServices && "rotate-180")} />
+              <ChevronDown
+                className={cn("h-5 w-5 transition-transform", mobileServices && "rotate-180")}
+              />
             </button>
             {mobileServices && (
               <div className="ml-3 flex flex-col border-l border-border pl-3">
-                <Link to="/services" onClick={close} className="rounded-xl px-3 py-2.5 text-sm font-semibold text-primary">
+                <Link
+                  to="/services"
+                  onClick={close}
+                  className="rounded-xl px-3 py-2.5 text-sm font-semibold text-primary"
+                >
                   All services
                 </Link>
                 {services.map((s) => (
@@ -164,14 +178,21 @@ export function SiteHeader() {
               </div>
             )}
             {NAV_AFTER.map((n) => (
-              <Link key={n.to} to={n.to} onClick={close} className="rounded-2xl px-4 py-3 text-lg font-semibold hover:bg-accent">
+              <Link
+                key={n.to}
+                to={n.to}
+                onClick={close}
+                className="rounded-2xl px-4 py-3 text-lg font-semibold hover:bg-accent"
+              >
                 {n.label}
               </Link>
             ))}
           </nav>
           <div className="mt-6 grid gap-3">
             <Button asChild variant="hero" size="xl">
-              <Link to="/contact" onClick={close}>Get Started</Link>
+              <Link to="/contact" onClick={close}>
+                Get Started
+              </Link>
             </Button>
             <Button asChild variant="glass" size="xl">
               <a href={SITE.phoneHref}>

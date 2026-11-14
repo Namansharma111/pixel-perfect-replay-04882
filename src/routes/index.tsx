@@ -138,15 +138,17 @@ function Hero() {
             Chandigarh-based digital marketing agency
           </p>
           <h1 className="mt-6 text-[2.6rem] font-extrabold leading-[1.04] sm:text-6xl lg:text-[4.2rem] animate-in fade-in slide-in-from-bottom-4 duration-700">
-            Digital Marketing That Turns Your Brand Into a <span className="text-gradient">Growth Story.</span>
+            Digital Marketing That Turns Your Brand Into a{" "}
+            <span className="text-gradient">Growth Story.</span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground animate-in fade-in slide-in-from-bottom-5 duration-1000">
-            At Social Waale, we help businesses build a powerful digital presence through strategic social media
-            marketing, SEO, paid advertising, creative branding and conversion-focused digital solutions.
+            At Social Waale, we help businesses build a powerful digital presence through strategic
+            social media marketing, SEO, paid advertising, creative branding and conversion-focused
+            digital solutions.
           </p>
           <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-            From building brand awareness to generating meaningful enquiries, we bring strategy, creativity and
-            technology together to help your business move forward.
+            From building brand awareness to generating meaningful enquiries, we bring strategy,
+            creativity and technology together to help your business move forward.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="hero" size="xl">
@@ -161,13 +163,18 @@ function Hero() {
           <div className="mt-10 flex items-center gap-4 text-sm text-muted-foreground">
             <div className="flex -space-x-2">
               {[Users, BarChart3, Sparkles].map((Icon, i) => (
-                <span key={i} className="grid h-9 w-9 place-items-center rounded-full border-2 border-background bg-surface-raised text-primary">
+                <span
+                  key={i}
+                  className="grid h-9 w-9 place-items-center rounded-full border-2 border-background bg-surface-raised text-primary"
+                >
                   <Icon className="h-4 w-4" />
                 </span>
               ))}
             </div>
             <span>
-              Trusted by <strong className="text-foreground">{SITE.stats.clients} businesses</strong> across North India
+              Trusted by{" "}
+              <strong className="text-foreground">{SITE.stats.clients} businesses</strong> across
+              North India
             </span>
           </div>
         </div>
@@ -203,7 +210,13 @@ function Hero() {
                     <stop offset="1" stopColor="var(--brand-orange)" />
                   </linearGradient>
                 </defs>
-                <path d="M2 34 L20 28 L36 30 L54 20 L72 22 L90 10 L118 4" fill="none" stroke="url(#spark)" strokeWidth="3" strokeLinecap="round" />
+                <path
+                  d="M2 34 L20 28 L36 30 L54 20 L72 22 L90 10 L118 4"
+                  fill="none"
+                  stroke="url(#spark)"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                />
               </svg>
             </div>
             <div className="glass absolute -bottom-4 left-8 flex animate-float items-center gap-3 rounded-2xl p-3 pr-5 shadow-card">
@@ -231,7 +244,10 @@ function TrustBar() {
     { value: SITE.stats.experience, label: "Of focused agency experience", Icon: Rocket },
   ];
   return (
-    <section aria-label="Why businesses trust Social Waale" className="relative border-y border-border bg-navy-deep/70">
+    <section
+      aria-label="Why businesses trust Social Waale"
+      className="relative border-y border-border bg-navy-deep/70"
+    >
       <Container className="grid grid-cols-2 gap-px lg:grid-cols-4">
         {items.map(({ value, label, Icon }) => (
           <div key={label} className="flex items-center gap-4 px-2 py-8 sm:px-6">
@@ -290,7 +306,8 @@ function AboutIntro() {
             eyebrow="About Social Waale"
             title={
               <>
-                A Chandigarh agency built for <span className="text-gradient">ambitious brands</span>
+                A Chandigarh agency built for{" "}
+                <span className="text-gradient">ambitious brands</span>
               </>
             }
             description="Social Waale is a digital marketing and social media marketing agency based in Chandigarh. In our first years we’ve worked with 50+ businesses — from local shops and clinics to growing service brands — helping them show up online with confidence and turn attention into real conversations."
@@ -342,7 +359,8 @@ function ServicesGrid() {
             </h3>
           </div>
           <span className="mt-6 inline-flex items-center gap-2 font-semibold text-primary">
-            Talk to our team <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            Talk to our team{" "}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </Link>
       </div>
@@ -353,12 +371,36 @@ function ServicesGrid() {
 /* ---------------- Why choose ---------------- */
 function WhyChoose() {
   const items = [
-    { Icon: Compass, title: "Strategy before posting", text: "We understand your business, customers and competitors before creating a single post or ad, so every rupee has a purpose." },
-    { Icon: Users, title: "A team that knows North India", text: "Festivals, languages, local buying habits — we plan campaigns that feel native to audiences in Punjab, Himachal, Haryana and beyond." },
-    { Icon: Lightbulb, title: "Creative that stops the scroll", text: "Design, reels, copy and photography produced in-house, crafted to match your brand and built to earn attention." },
-    { Icon: BarChart3, title: "Honest, clear reporting", text: "Simple monthly reports focused on what matters — enquiries, reach and progress — without vanity metrics or jargon." },
-    { Icon: ShieldCheck, title: "Transparent pricing", text: "Clear scope and fees in writing. Your ad budget stays in your own ad accounts, fully visible to you." },
-    { Icon: HeartHandshake, title: "Direct, responsive support", text: "Talk directly to the people working on your account over WhatsApp or call — no ticket queues, no runaround." },
+    {
+      Icon: Compass,
+      title: "Strategy before posting",
+      text: "We understand your business, customers and competitors before creating a single post or ad, so every rupee has a purpose.",
+    },
+    {
+      Icon: Users,
+      title: "A team that knows North India",
+      text: "Festivals, languages, local buying habits — we plan campaigns that feel native to audiences in Punjab, Himachal, Haryana and beyond.",
+    },
+    {
+      Icon: Lightbulb,
+      title: "Creative that stops the scroll",
+      text: "Design, reels, copy and photography produced in-house, crafted to match your brand and built to earn attention.",
+    },
+    {
+      Icon: BarChart3,
+      title: "Honest, clear reporting",
+      text: "Simple monthly reports focused on what matters — enquiries, reach and progress — without vanity metrics or jargon.",
+    },
+    {
+      Icon: ShieldCheck,
+      title: "Transparent pricing",
+      text: "Clear scope and fees in writing. Your ad budget stays in your own ad accounts, fully visible to you.",
+    },
+    {
+      Icon: HeartHandshake,
+      title: "Direct, responsive support",
+      text: "Talk directly to the people working on your account over WhatsApp or call — no ticket queues, no runaround.",
+    },
   ];
   return (
     <Section labelledBy="why-heading">
@@ -390,11 +432,26 @@ function WhyChoose() {
 /* ---------------- Process ---------------- */
 function Process() {
   const steps = [
-    { title: "Discover", text: "A free discovery call to understand your business, audience, goals and current digital presence." },
-    { title: "Strategise", text: "A clear plan covering channels, content themes, budgets, timelines and the results we’ll track." },
-    { title: "Create", text: "Our team produces creatives, content, campaigns and pages that reflect your brand." },
-    { title: "Launch", text: "Campaigns go live with proper tracking so every enquiry and click is measured." },
-    { title: "Optimise & Grow", text: "We review performance regularly, refine what works and scale what brings results." },
+    {
+      title: "Discover",
+      text: "A free discovery call to understand your business, audience, goals and current digital presence.",
+    },
+    {
+      title: "Strategise",
+      text: "A clear plan covering channels, content themes, budgets, timelines and the results we’ll track.",
+    },
+    {
+      title: "Create",
+      text: "Our team produces creatives, content, campaigns and pages that reflect your brand.",
+    },
+    {
+      title: "Launch",
+      text: "Campaigns go live with proper tracking so every enquiry and click is measured.",
+    },
+    {
+      title: "Optimise & Grow",
+      text: "We review performance regularly, refine what works and scale what brings results.",
+    },
   ];
   return (
     <Section labelledBy="process-heading" className="bg-gradient-section">
@@ -405,7 +462,10 @@ function Process() {
         description="No confusion, no guesswork. Here’s how we take your brand from where it is today to where you want it to be."
       />
       <ol className="relative mt-16 grid gap-6 md:grid-cols-5">
-        <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-brand opacity-40 md:block" aria-hidden />
+        <div
+          className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-brand opacity-40 md:block"
+          aria-hidden
+        />
         {steps.map((s, i) => (
           <li key={s.title} className="reveal relative">
             <span className="relative z-10 grid h-14 w-14 place-items-center rounded-2xl bg-gradient-brand text-lg font-extrabold text-primary-foreground shadow-glow">
@@ -462,10 +522,30 @@ function Industries() {
 /* ---------------- Featured work ---------------- */
 function FeaturedWork() {
   const work = [
-    { img: socialImg, title: "Social Media Content & Reels", text: "Scroll-stopping creatives, reels and content calendars for Instagram and Facebook.", to: "/social-media-marketing" as const },
-    { img: brandingImg, title: "Brand Identity Design", text: "Logos, colour systems and brand guidelines that make businesses instantly recognisable.", to: "/branding-creative-strategy" as const },
-    { img: websiteImg, title: "Websites & Landing Pages", text: "Fast, mobile-first websites designed to turn visitors into enquiries.", to: "/website-app-development" as const },
-    { img: adsImg, title: "Performance Ad Campaigns", text: "Google and Meta campaigns structured around leads, calls and measurable outcomes.", to: "/google-ads-performance-marketing" as const },
+    {
+      img: socialImg,
+      title: "Social Media Content & Reels",
+      text: "Scroll-stopping creatives, reels and content calendars for Instagram and Facebook.",
+      to: "/social-media-marketing" as const,
+    },
+    {
+      img: brandingImg,
+      title: "Brand Identity Design",
+      text: "Logos, colour systems and brand guidelines that make businesses instantly recognisable.",
+      to: "/branding-creative-strategy" as const,
+    },
+    {
+      img: websiteImg,
+      title: "Websites & Landing Pages",
+      text: "Fast, mobile-first websites designed to turn visitors into enquiries.",
+      to: "/website-app-development" as const,
+    },
+    {
+      img: adsImg,
+      title: "Performance Ad Campaigns",
+      text: "Google and Meta campaigns structured around leads, calls and measurable outcomes.",
+      to: "/google-ads-performance-marketing" as const,
+    },
   ];
   return (
     <Section labelledBy="work-heading" className="bg-gradient-section">
@@ -546,7 +626,12 @@ function Locations() {
             </IconBadge>
             <div>
               <h3 className="text-lg font-bold">
-                {l.name} {l.primary && <span className="ml-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">Home base</span>}
+                {l.name}{" "}
+                {l.primary && (
+                  <span className="ml-1 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary">
+                    Home base
+                  </span>
+                )}
               </h3>
               <p className="text-sm text-muted-foreground">{l.desc}</p>
             </div>
@@ -565,16 +650,20 @@ function Testimonials() {
   return (
     <Section labelledBy="testimonials-heading" className="bg-gradient-section">
       <div className="reveal mx-auto max-w-4xl card-premium overflow-hidden p-8 text-center sm:p-14">
-        <div className="absolute -top-20 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" aria-hidden />
+        <div
+          className="absolute -top-20 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-primary/15 blur-3xl"
+          aria-hidden
+        />
         <MessageSquareQuote className="relative mx-auto h-12 w-12 text-primary" />
         <p className="eyebrow relative mt-6 justify-center">Client testimonials</p>
         <h2 id="testimonials-heading" className="relative mt-4 text-3xl font-extrabold sm:text-4xl">
           Real words from real clients — coming soon
         </h2>
         <p className="relative mx-auto mt-5 max-w-2xl leading-relaxed text-muted-foreground">
-          We’ve had the privilege of working with 50+ businesses, and we’re currently collecting verified
-          feedback to share here. We’d rather show you genuine reviews than made-up quotes. In the meantime,
-          follow our work on social media or ask us to connect you with a client in your industry.
+          We’ve had the privilege of working with 50+ businesses, and we’re currently collecting
+          verified feedback to share here. We’d rather show you genuine reviews than made-up quotes.
+          In the meantime, follow our work on social media or ask us to connect you with a client in
+          your industry.
         </p>
         <div className="relative mt-8 flex flex-wrap justify-center gap-3">
           <Button asChild variant="hero" size="lg">
@@ -614,54 +703,57 @@ function SeoContent() {
         <div className="prose-article lg:col-span-8">
           <h3>Why digital marketing matters for businesses in Chandigarh and North India</h3>
           <p>
-            Customers in Chandigarh, Mohali, Ludhiana or Shimla now research almost every purchase online before
-            they call, visit or buy. They check Instagram to see if a café feels right, search Google for “best
-            dentist near me”, and compare websites before choosing a coaching institute. If your business isn’t
-            visible and convincing in those moments, the enquiry goes to a competitor — even if your product is
-            better.
+            Customers in Chandigarh, Mohali, Ludhiana or Shimla now research almost every purchase
+            online before they call, visit or buy. They check Instagram to see if a café feels
+            right, search Google for “best dentist near me”, and compare websites before choosing a
+            coaching institute. If your business isn’t visible and convincing in those moments, the
+            enquiry goes to a competitor — even if your product is better.
           </p>
           <p>
-            A good <Link to="/services">digital marketing agency in Chandigarh</Link> helps you show up in the
-            right places, with the right message, for people who are already looking. That’s very different from
-            simply “posting regularly” or “running some ads”.
+            A good <Link to="/services">digital marketing agency in Chandigarh</Link> helps you show
+            up in the right places, with the right message, for people who are already looking.
+            That’s very different from simply “posting regularly” or “running some ads”.
           </p>
           <h3>Social media marketing: building familiarity and trust</h3>
           <p>
-            Platforms like Instagram and Facebook are where people discover local brands and decide whether they
-            trust them. Effective <Link to="/social-media-marketing">social media marketing</Link> combines a
-            consistent content calendar, reels that show your product or service in action, and targeted paid
-            campaigns that reach the right age group, location and interests. For businesses in Punjab, Haryana
-            and Himachal Pradesh, local language, festivals and seasonal moments make content far more relatable.
+            Platforms like Instagram and Facebook are where people discover local brands and decide
+            whether they trust them. Effective{" "}
+            <Link to="/social-media-marketing">social media marketing</Link> combines a consistent
+            content calendar, reels that show your product or service in action, and targeted paid
+            campaigns that reach the right age group, location and interests. For businesses in
+            Punjab, Haryana and Himachal Pradesh, local language, festivals and seasonal moments
+            make content far more relatable.
           </p>
           <h3>SEO and Google Ads: capturing people who are ready to act</h3>
           <p>
             When someone searches for a service, they’re usually close to making a decision.{" "}
-            <Link to="/seo-services">SEO services</Link> improve your website and Google Business Profile so you
-            appear in organic and map results over time, while{" "}
-            <Link to="/google-ads-performance-marketing">Google Ads</Link> can put you at the top of results
-            almost immediately. Most growing businesses benefit from a mix — ads for quick enquiries, SEO for
-            long-term, lower-cost visibility.
+            <Link to="/seo-services">SEO services</Link> improve your website and Google Business
+            Profile so you appear in organic and map results over time, while{" "}
+            <Link to="/google-ads-performance-marketing">Google Ads</Link> can put you at the top of
+            results almost immediately. Most growing businesses benefit from a mix — ads for quick
+            enquiries, SEO for long-term, lower-cost visibility.
           </p>
           <h3>Your website: where interest becomes an enquiry</h3>
           <p>
-            Every channel eventually points to your website or WhatsApp. A slow, confusing or outdated site wastes
-            the attention you’ve paid for. A fast, mobile-friendly website with clear calls to action, built by a
-            team that understands <Link to="/ui-ux-cro-optimization">conversion optimisation</Link>, turns more
-            visitors into customers.
+            Every channel eventually points to your website or WhatsApp. A slow, confusing or
+            outdated site wastes the attention you’ve paid for. A fast, mobile-friendly website with
+            clear calls to action, built by a team that understands{" "}
+            <Link to="/ui-ux-cro-optimization">conversion optimisation</Link>, turns more visitors
+            into customers.
           </p>
           <h3>Branding and content: the foundation of everything</h3>
           <p>
-            Strong <Link to="/branding-creative-strategy">branding</Link> makes every post, ad and page more
-            effective because people recognise and remember you. Helpful{" "}
-            <Link to="/content-marketing-email-automation">content and email marketing</Link> keeps you in front of
-            past enquiries and customers, so they come back when they’re ready.
+            Strong <Link to="/branding-creative-strategy">branding</Link> makes every post, ad and
+            page more effective because people recognise and remember you. Helpful{" "}
+            <Link to="/content-marketing-email-automation">content and email marketing</Link> keeps
+            you in front of past enquiries and customers, so they come back when they’re ready.
           </p>
           <h3>Choosing the right partner</h3>
           <p>
-            Look for an agency that asks about your business before talking about tools, explains pricing
-            clearly, keeps ad accounts in your name and reports on outcomes you care about. That’s exactly how we
-            work at Social Waale. If you’d like a second opinion on your current marketing,{" "}
-            <Link to="/contact">get in touch</Link> for a free consultation.
+            Look for an agency that asks about your business before talking about tools, explains
+            pricing clearly, keeps ad accounts in your name and reports on outcomes you care about.
+            That’s exactly how we work at Social Waale. If you’d like a second opinion on your
+            current marketing, <Link to="/contact">get in touch</Link> for a free consultation.
           </p>
         </div>
       </div>

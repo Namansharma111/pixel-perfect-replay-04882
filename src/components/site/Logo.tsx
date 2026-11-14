@@ -17,7 +17,11 @@ export function LogoMark({ size = 44, className }: { size?: number; className?: 
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link to="/" className={cn("group flex items-center gap-3", className)} aria-label="Social Waale home">
+    <Link
+      to="/"
+      className={cn("group flex items-center gap-3", className)}
+      aria-label="Social Waale home"
+    >
       <LogoMark className="transition-transform duration-500 group-hover:rotate-[8deg]" />
       <span className="flex flex-col leading-none">
         <span className="text-lg font-extrabold tracking-tight text-foreground">

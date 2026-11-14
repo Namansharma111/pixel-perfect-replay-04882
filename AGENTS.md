@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Site content (services, articles, legal text) lives in `src/data/*` and pages render it; edit data, not page markup, to change copy. Why: one source feeds pages, menus, sitemap and schema.
+- Each service has a thin route file at `src/routes/<slug>.tsx` that renders the shared `ServicePage`; add a slug to `SERVICE_ORDER` and a matching route file together. Why: keeps 10 pages consistent and the routing test enforces it.
+- `sitemap.xml` and `robots.txt` are server routes using `SITE.url` (env `VITE_SITE_URL`) or the request origin. Why: the final domain is not decided yet.

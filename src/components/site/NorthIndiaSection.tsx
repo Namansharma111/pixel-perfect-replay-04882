@@ -30,26 +30,48 @@ const regions = [
 
 export function NorthIndiaSection() {
   return (
-    <section aria-labelledby="north-india-heading" className="relative border-t border-border bg-gradient-section py-20 lg:py-24">
+    <section
+      aria-labelledby="north-india-heading"
+      className="relative border-t border-border bg-gradient-section py-20 lg:py-24"
+    >
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <p className="eyebrow">Serving from Chandigarh</p>
-            <h2 id="north-india-heading" className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl">
+            <h2
+              id="north-india-heading"
+              className="mt-4 text-3xl font-extrabold leading-tight sm:text-4xl"
+            >
               Digital Marketing Services Across North India
             </h2>
             <p className="mt-5 leading-relaxed text-muted-foreground">
-              Social Waale is based in Chandigarh, and our work reaches well beyond the tricity. Digital
-              marketing doesn’t need a branch office in every city — it needs a team that understands local
-              audiences, festivals, languages and buying habits. We plan, create and manage campaigns
-              remotely for businesses across Himachal Pradesh, Punjab, Haryana, Uttar Pradesh and Delhi NCR,
-              with video calls, shared dashboards and a dedicated point of contact.
+              Social Waale is based in Chandigarh, and our work reaches well beyond the tricity.
+              Digital marketing doesn’t need a branch office in every city — it needs a team that
+              understands local audiences, festivals, languages and buying habits. We plan, create
+              and manage campaigns remotely for businesses across Himachal Pradesh, Punjab, Haryana,
+              Uttar Pradesh and Delhi NCR, with video calls, shared dashboards and a dedicated point
+              of contact.
             </p>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Whether you need <Link to="/social-media-marketing" className="text-primary underline-offset-4 hover:underline">social media marketing</Link>,{" "}
-              <Link to="/seo-services" className="text-primary underline-offset-4 hover:underline">local SEO</Link> or a{" "}
-              <Link to="/website-app-development" className="text-primary underline-offset-4 hover:underline">new website</Link>, the
-              same Chandigarh team handles your account from start to finish.
+              Whether you need{" "}
+              <Link
+                to="/social-media-marketing"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                social media marketing
+              </Link>
+              ,{" "}
+              <Link to="/seo-services" className="text-primary underline-offset-4 hover:underline">
+                local SEO
+              </Link>{" "}
+              or a{" "}
+              <Link
+                to="/website-app-development"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                new website
+              </Link>
+              , the same Chandigarh team handles your account from start to finish.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">

@@ -4,7 +4,9 @@ import { SITE } from "@/config/site";
 export function FloatingWhatsApp() {
   return (
     <a
-      href={SITE.whatsappMessage("Hi Social Waale, I’d like to discuss digital marketing for my business.")}
+      href={SITE.whatsappMessage(
+        "Hi Social Waale, I’d like to discuss digital marketing for my business.",
+      )}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Social Waale on WhatsApp"

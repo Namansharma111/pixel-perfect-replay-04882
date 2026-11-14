@@ -19,7 +19,10 @@ export const submitContact = createServerFn({ method: "POST" })
     });
     if (error) {
       console.error("contact insert failed", error);
-      return { ok: false, error: "We couldn’t send your enquiry right now. Please try again or WhatsApp us." };
+      return {
+        ok: false,
+        error: "We couldn’t send your enquiry right now. Please try again or WhatsApp us.",
+      };
     }
     return { ok: true };
   });
@@ -36,7 +39,8 @@ export const submitApplication = createServerFn({ method: "POST" })
       website: data.get("website") ?? "",
     });
     const resume = data.get("resume");
-    if (!(resume instanceof File) || resume.size === 0) throw new Error("Please attach your resume");
+    if (!(resume instanceof File) || resume.size === 0)
+      throw new Error("Please attach your resume");
     if (resume.size > RESUME_MAX_BYTES) throw new Error("Resume must be 5 MB or smaller");
     if (!RESUME_TYPES[resume.type]) throw new Error("Resume must be a PDF, DOC or DOCX file");
     return { fields, resume };
@@ -45,7 +49,10 @@ export const submitApplication = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { fields, resume } = data;
     const ext = RESUME_TYPES[resume.type];
-    const safeName = fields.fullName.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40);
+    const safeName = fields.fullName
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .slice(0, 40);
     const path = `${new Date().toISOString().slice(0, 10)}/${crypto.randomUUID()}-${safeName}.${ext}`;
 
     const upload = await supabaseAdmin.storage

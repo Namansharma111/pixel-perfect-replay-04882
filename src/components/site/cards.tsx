@@ -11,13 +11,18 @@ export function ServiceCard({ service, index }: { service: ServiceContent; index
       to={`/${service.slug}`}
       className="reveal card-premium card-hover group flex h-full flex-col overflow-hidden p-7"
     >
-      <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/0 blur-2xl transition-all duration-500 group-hover:bg-primary/15" aria-hidden />
+      <div
+        className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/0 blur-2xl transition-all duration-500 group-hover:bg-primary/15"
+        aria-hidden
+      />
       <div className="flex items-start justify-between">
         <span className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-brand text-primary-foreground shadow-glow transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[-6deg]">
           <Icon className="h-6 w-6" />
         </span>
         {index !== undefined && (
-          <span className="text-sm font-bold text-muted-foreground/50">{String(index + 1).padStart(2, "0")}</span>
+          <span className="text-sm font-bold text-muted-foreground/50">
+            {String(index + 1).padStart(2, "0")}
+          </span>
         )}
       </div>
       <h3 className="mt-6 text-xl font-bold leading-snug">{service.name}</h3>
@@ -61,7 +66,9 @@ export function ArticleCard({ article }: { article: Article }) {
         <h3 className="mt-3 text-lg font-bold leading-snug transition-colors group-hover:text-primary">
           {article.title}
         </h3>
-        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">{article.excerpt}</p>
+        <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+          {article.excerpt}
+        </p>
         <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
           Read article <ArrowUpRight className="h-4 w-4" />
         </span>

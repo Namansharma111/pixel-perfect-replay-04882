@@ -10,7 +10,7 @@ export const SITE = {
   tagline: "Digital Marketing & Social Media Marketing Agency in Chandigarh",
   description:
     "Social Waale is a Chandigarh-based digital marketing agency offering social media marketing, SEO, Google Ads, branding, websites and creative media for businesses across North India.",
-  url: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, "") ?? "",
+  url: (import.meta.env["VITE_SITE_URL"] as string | undefined)?.replace(/\/$/, "") ?? "",
   phone: "+91 9805789363",
   phoneHref: "tel:+919805789363",
   email: "socialgrow111@gmail.com",
@@ -28,14 +28,7 @@ export const SITE = {
     services: "10",
     experience: "1–2 Years",
   },
-  locations: [
-    "Chandigarh",
-    "Himachal Pradesh",
-    "Punjab",
-    "Haryana",
-    "Uttar Pradesh",
-    "Delhi NCR",
-  ],
+  locations: ["Chandigarh", "Himachal Pradesh", "Punjab", "Haryana", "Uttar Pradesh", "Delhi NCR"],
 } as const;
 
 export function absoluteUrl(path: string): string {

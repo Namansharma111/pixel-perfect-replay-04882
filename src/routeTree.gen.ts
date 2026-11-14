@@ -10,33 +10,300 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BrandingCreativeStrategyRouteImport } from './routes/branding-creative-strategy'
+import { Route as CareersRouteImport } from './routes/careers'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ContentMarketingEmailAutomationRouteImport } from './routes/content-marketing-email-automation'
+import { Route as GoogleAdsPerformanceMarketingRouteImport } from './routes/google-ads-performance-marketing'
+import { Route as OfflineLocalAdvertisingRouteImport } from './routes/offline-local-advertising'
+import { Route as PhotoshootCreativeMediaRouteImport } from './routes/photoshoot-creative-media'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as PublicRelationsRouteImport } from './routes/public-relations'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as SeoServicesRouteImport } from './routes/seo-services'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SocialMediaMarketingRouteImport } from './routes/social-media-marketing'
+import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as UiUxCroOptimizationRouteImport } from './routes/ui-ux-cro-optimization'
+import { Route as WebsiteAppDevelopmentRouteImport } from './routes/website-app-development'
+import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
+import { Route as ArticlesSlugRouteImport } from './routes/articles.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandingCreativeStrategyRoute =
+  BrandingCreativeStrategyRouteImport.update({
+    id: '/branding-creative-strategy',
+    path: '/branding-creative-strategy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CareersRoute = CareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContentMarketingEmailAutomationRoute =
+  ContentMarketingEmailAutomationRouteImport.update({
+    id: '/content-marketing-email-automation',
+    path: '/content-marketing-email-automation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const GoogleAdsPerformanceMarketingRoute =
+  GoogleAdsPerformanceMarketingRouteImport.update({
+    id: '/google-ads-performance-marketing',
+    path: '/google-ads-performance-marketing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const OfflineLocalAdvertisingRoute = OfflineLocalAdvertisingRouteImport.update({
+  id: '/offline-local-advertising',
+  path: '/offline-local-advertising',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhotoshootCreativeMediaRoute = PhotoshootCreativeMediaRouteImport.update({
+  id: '/photoshoot-creative-media',
+  path: '/photoshoot-creative-media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicRelationsRoute = PublicRelationsRouteImport.update({
+  id: '/public-relations',
+  path: '/public-relations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoServicesRoute = SeoServicesRouteImport.update({
+  id: '/seo-services',
+  path: '/seo-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialMediaMarketingRoute = SocialMediaMarketingRouteImport.update({
+  id: '/social-media-marketing',
+  path: '/social-media-marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
+  id: '/terms-and-conditions',
+  path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UiUxCroOptimizationRoute = UiUxCroOptimizationRouteImport.update({
+  id: '/ui-ux-cro-optimization',
+  path: '/ui-ux-cro-optimization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WebsiteAppDevelopmentRoute = WebsiteAppDevelopmentRouteImport.update({
+  id: '/website-app-development',
+  path: '/website-app-development',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
+  id: '/articles/',
+  path: '/articles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArticlesSlugRoute = ArticlesSlugRouteImport.update({
+  id: '/articles/$slug',
+  path: '/articles/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/branding-creative-strategy': typeof BrandingCreativeStrategyRoute
+  '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
+  '/content-marketing-email-automation': typeof ContentMarketingEmailAutomationRoute
+  '/google-ads-performance-marketing': typeof GoogleAdsPerformanceMarketingRoute
+  '/offline-local-advertising': typeof OfflineLocalAdvertisingRoute
+  '/photoshoot-creative-media': typeof PhotoshootCreativeMediaRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/public-relations': typeof PublicRelationsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/seo-services': typeof SeoServicesRoute
+  '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/social-media-marketing': typeof SocialMediaMarketingRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ui-ux-cro-optimization': typeof UiUxCroOptimizationRoute
+  '/website-app-development': typeof WebsiteAppDevelopmentRoute
+  '/articles/$slug': typeof ArticlesSlugRoute
+  '/articles/': typeof ArticlesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/branding-creative-strategy': typeof BrandingCreativeStrategyRoute
+  '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
+  '/content-marketing-email-automation': typeof ContentMarketingEmailAutomationRoute
+  '/google-ads-performance-marketing': typeof GoogleAdsPerformanceMarketingRoute
+  '/offline-local-advertising': typeof OfflineLocalAdvertisingRoute
+  '/photoshoot-creative-media': typeof PhotoshootCreativeMediaRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/public-relations': typeof PublicRelationsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/seo-services': typeof SeoServicesRoute
+  '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/social-media-marketing': typeof SocialMediaMarketingRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ui-ux-cro-optimization': typeof UiUxCroOptimizationRoute
+  '/website-app-development': typeof WebsiteAppDevelopmentRoute
+  '/articles/$slug': typeof ArticlesSlugRoute
+  '/articles': typeof ArticlesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/branding-creative-strategy': typeof BrandingCreativeStrategyRoute
+  '/careers': typeof CareersRoute
+  '/contact': typeof ContactRoute
+  '/content-marketing-email-automation': typeof ContentMarketingEmailAutomationRoute
+  '/google-ads-performance-marketing': typeof GoogleAdsPerformanceMarketingRoute
+  '/offline-local-advertising': typeof OfflineLocalAdvertisingRoute
+  '/photoshoot-creative-media': typeof PhotoshootCreativeMediaRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/public-relations': typeof PublicRelationsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/seo-services': typeof SeoServicesRoute
+  '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/social-media-marketing': typeof SocialMediaMarketingRoute
+  '/terms-and-conditions': typeof TermsAndConditionsRoute
+  '/ui-ux-cro-optimization': typeof UiUxCroOptimizationRoute
+  '/website-app-development': typeof WebsiteAppDevelopmentRoute
+  '/articles/$slug': typeof ArticlesSlugRoute
+  '/articles/': typeof ArticlesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/branding-creative-strategy'
+    | '/careers'
+    | '/contact'
+    | '/content-marketing-email-automation'
+    | '/google-ads-performance-marketing'
+    | '/offline-local-advertising'
+    | '/photoshoot-creative-media'
+    | '/privacy-policy'
+    | '/public-relations'
+    | '/robots.txt'
+    | '/seo-services'
+    | '/services'
+    | '/sitemap.xml'
+    | '/social-media-marketing'
+    | '/terms-and-conditions'
+    | '/ui-ux-cro-optimization'
+    | '/website-app-development'
+    | '/articles/$slug'
+    | '/articles/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/branding-creative-strategy'
+    | '/careers'
+    | '/contact'
+    | '/content-marketing-email-automation'
+    | '/google-ads-performance-marketing'
+    | '/offline-local-advertising'
+    | '/photoshoot-creative-media'
+    | '/privacy-policy'
+    | '/public-relations'
+    | '/robots.txt'
+    | '/seo-services'
+    | '/services'
+    | '/sitemap.xml'
+    | '/social-media-marketing'
+    | '/terms-and-conditions'
+    | '/ui-ux-cro-optimization'
+    | '/website-app-development'
+    | '/articles/$slug'
+    | '/articles'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/branding-creative-strategy'
+    | '/careers'
+    | '/contact'
+    | '/content-marketing-email-automation'
+    | '/google-ads-performance-marketing'
+    | '/offline-local-advertising'
+    | '/photoshoot-creative-media'
+    | '/privacy-policy'
+    | '/public-relations'
+    | '/robots.txt'
+    | '/seo-services'
+    | '/services'
+    | '/sitemap.xml'
+    | '/social-media-marketing'
+    | '/terms-and-conditions'
+    | '/ui-ux-cro-optimization'
+    | '/website-app-development'
+    | '/articles/$slug'
+    | '/articles/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  BrandingCreativeStrategyRoute: typeof BrandingCreativeStrategyRoute
+  CareersRoute: typeof CareersRoute
+  ContactRoute: typeof ContactRoute
+  ContentMarketingEmailAutomationRoute: typeof ContentMarketingEmailAutomationRoute
+  GoogleAdsPerformanceMarketingRoute: typeof GoogleAdsPerformanceMarketingRoute
+  OfflineLocalAdvertisingRoute: typeof OfflineLocalAdvertisingRoute
+  PhotoshootCreativeMediaRoute: typeof PhotoshootCreativeMediaRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  PublicRelationsRoute: typeof PublicRelationsRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SeoServicesRoute: typeof SeoServicesRoute
+  ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SocialMediaMarketingRoute: typeof SocialMediaMarketingRoute
+  TermsAndConditionsRoute: typeof TermsAndConditionsRoute
+  UiUxCroOptimizationRoute: typeof UiUxCroOptimizationRoute
+  WebsiteAppDevelopmentRoute: typeof WebsiteAppDevelopmentRoute
+  ArticlesSlugRoute: typeof ArticlesSlugRoute
+  ArticlesIndexRoute: typeof ArticlesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +315,171 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/branding-creative-strategy': {
+      id: '/branding-creative-strategy'
+      path: '/branding-creative-strategy'
+      fullPath: '/branding-creative-strategy'
+      preLoaderRoute: typeof BrandingCreativeStrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/careers': {
+      id: '/careers'
+      path: '/careers'
+      fullPath: '/careers'
+      preLoaderRoute: typeof CareersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/content-marketing-email-automation': {
+      id: '/content-marketing-email-automation'
+      path: '/content-marketing-email-automation'
+      fullPath: '/content-marketing-email-automation'
+      preLoaderRoute: typeof ContentMarketingEmailAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/google-ads-performance-marketing': {
+      id: '/google-ads-performance-marketing'
+      path: '/google-ads-performance-marketing'
+      fullPath: '/google-ads-performance-marketing'
+      preLoaderRoute: typeof GoogleAdsPerformanceMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offline-local-advertising': {
+      id: '/offline-local-advertising'
+      path: '/offline-local-advertising'
+      fullPath: '/offline-local-advertising'
+      preLoaderRoute: typeof OfflineLocalAdvertisingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/photoshoot-creative-media': {
+      id: '/photoshoot-creative-media'
+      path: '/photoshoot-creative-media'
+      fullPath: '/photoshoot-creative-media'
+      preLoaderRoute: typeof PhotoshootCreativeMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/public-relations': {
+      id: '/public-relations'
+      path: '/public-relations'
+      fullPath: '/public-relations'
+      preLoaderRoute: typeof PublicRelationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo-services': {
+      id: '/seo-services'
+      path: '/seo-services'
+      fullPath: '/seo-services'
+      preLoaderRoute: typeof SeoServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-media-marketing': {
+      id: '/social-media-marketing'
+      path: '/social-media-marketing'
+      fullPath: '/social-media-marketing'
+      preLoaderRoute: typeof SocialMediaMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms-and-conditions': {
+      id: '/terms-and-conditions'
+      path: '/terms-and-conditions'
+      fullPath: '/terms-and-conditions'
+      preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ui-ux-cro-optimization': {
+      id: '/ui-ux-cro-optimization'
+      path: '/ui-ux-cro-optimization'
+      fullPath: '/ui-ux-cro-optimization'
+      preLoaderRoute: typeof UiUxCroOptimizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/website-app-development': {
+      id: '/website-app-development'
+      path: '/website-app-development'
+      fullPath: '/website-app-development'
+      preLoaderRoute: typeof WebsiteAppDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/articles/': {
+      id: '/articles/'
+      path: '/articles'
+      fullPath: '/articles/'
+      preLoaderRoute: typeof ArticlesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/articles/$slug': {
+      id: '/articles/$slug'
+      path: '/articles/$slug'
+      fullPath: '/articles/$slug'
+      preLoaderRoute: typeof ArticlesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  BrandingCreativeStrategyRoute: BrandingCreativeStrategyRoute,
+  CareersRoute: CareersRoute,
+  ContactRoute: ContactRoute,
+  ContentMarketingEmailAutomationRoute: ContentMarketingEmailAutomationRoute,
+  GoogleAdsPerformanceMarketingRoute: GoogleAdsPerformanceMarketingRoute,
+  OfflineLocalAdvertisingRoute: OfflineLocalAdvertisingRoute,
+  PhotoshootCreativeMediaRoute: PhotoshootCreativeMediaRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  PublicRelationsRoute: PublicRelationsRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SeoServicesRoute: SeoServicesRoute,
+  ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SocialMediaMarketingRoute: SocialMediaMarketingRoute,
+  TermsAndConditionsRoute: TermsAndConditionsRoute,
+  UiUxCroOptimizationRoute: UiUxCroOptimizationRoute,
+  WebsiteAppDevelopmentRoute: WebsiteAppDevelopmentRoute,
+  ArticlesSlugRoute: ArticlesSlugRoute,
+  ArticlesIndexRoute: ArticlesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

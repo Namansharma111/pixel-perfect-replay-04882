@@ -49,7 +49,11 @@ export const contactSchema = z.object({
   email: z.string().trim().email("Please enter a valid email address").max(255),
   service: z.enum(SERVICE_OPTIONS, { errorMap: () => ({ message: "Please choose a service" }) }),
   budget: z.string().trim().max(60).optional().or(z.literal("")),
-  message: z.string().trim().min(10, "Please tell us a little more (at least 10 characters)").max(2000),
+  message: z
+    .string()
+    .trim()
+    .min(10, "Please tell us a little more (at least 10 characters)")
+    .max(2000),
   sourcePage: z.string().max(200).optional(),
   // Honeypot: real visitors never see or fill this field.
   website: z.string().max(0).optional().or(z.literal("")),

@@ -29,13 +29,22 @@ function NotFoundComponent() {
           The page you’re looking for doesn’t exist or may have moved. Let’s get you back on track.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link to="/" className="rounded-full bg-gradient-brand px-6 py-3 text-sm font-bold text-primary-foreground shadow-glow">
+          <Link
+            to="/"
+            className="rounded-full bg-gradient-brand px-6 py-3 text-sm font-bold text-primary-foreground shadow-glow"
+          >
             Back to home
           </Link>
-          <Link to="/services" className="glass rounded-full px-6 py-3 text-sm font-semibold text-foreground">
+          <Link
+            to="/services"
+            className="glass rounded-full px-6 py-3 text-sm font-semibold text-foreground"
+          >
             Explore services
           </Link>
-          <Link to="/contact" className="glass rounded-full px-6 py-3 text-sm font-semibold text-foreground">
+          <Link
+            to="/contact"
+            className="glass rounded-full px-6 py-3 text-sm font-semibold text-foreground"
+          >
             Contact us
           </Link>
         </div>
@@ -121,7 +130,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           description: SITE.description,
           telephone: SITE.phone,
           email: SITE.email,
-          address: { "@type": "PostalAddress", addressLocality: "Chandigarh", addressCountry: "IN" },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Chandigarh",
+            addressCountry: "IN",
+          },
           areaServed: [...SITE.locations, "India"].map((name) => ({ "@type": "Place", name })),
           sameAs: Object.values(SITE.socials),
         }),

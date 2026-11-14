@@ -19,7 +19,11 @@ export function Section({
   labelledBy?: string;
 }) {
   return (
-    <section id={id} aria-labelledby={labelledBy} className={cn("relative py-20 lg:py-28", className)}>
+    <section
+      id={id}
+      aria-labelledby={labelledBy}
+      className={cn("relative py-20 lg:py-28", className)}
+    >
       <Container>{children}</Container>
     </section>
   );
@@ -48,10 +52,17 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2 id={id} className="mt-4 text-3xl font-extrabold leading-[1.15] sm:text-4xl lg:text-[2.75rem]">
+      <h2
+        id={id}
+        className="mt-4 text-3xl font-extrabold leading-[1.15] sm:text-4xl lg:text-[2.75rem]"
+      >
         {title}
       </h2>
-      {description && <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">{description}</p>}
+      {description && (
+        <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          {description}
+        </p>
+      )}
     </div>
   );
 }
@@ -112,9 +123,13 @@ export function PageHero({
               <span className="h-px w-6 bg-primary" aria-hidden />
               {eyebrow}
             </p>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl">{title}</h1>
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl">
+              {title}
+            </h1>
             {description && (
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{description}</p>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                {description}
+              </p>
             )}
             {children && <div className="mt-8">{children}</div>}
           </div>
@@ -157,4 +172,3 @@ export function IconBadge({ children, className }: { children: ReactNode; classN
     </span>
   );
 }
-

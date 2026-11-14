@@ -33,23 +33,34 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A Chandigarh-based digital marketing and social media marketing agency helping brands across
-              North India grow with strategy, creativity and technology. {SITE.stats.clients} clients served
-              across {SITE.stats.services} services.
+              A Chandigarh-based digital marketing and social media marketing agency helping brands
+              across North India grow with strategy, creativity and technology. {SITE.stats.clients}{" "}
+              clients served across {SITE.stats.services} services.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
               <li>
-                <a href={SITE.phoneHref} className="flex items-center gap-3 text-foreground hover:text-primary">
+                <a
+                  href={SITE.phoneHref}
+                  className="flex items-center gap-3 text-foreground hover:text-primary"
+                >
                   <Phone className="h-4 w-4 text-primary" /> {SITE.phone}
                 </a>
               </li>
               <li>
-                <a href={SITE.whatsappHref} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-foreground hover:text-primary">
+                <a
+                  href={SITE.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-foreground hover:text-primary"
+                >
                   <MessageCircle className="h-4 w-4 text-primary" /> WhatsApp us
                 </a>
               </li>
               <li>
-                <a href={SITE.emailHref} className="flex items-center gap-3 text-foreground hover:text-primary">
+                <a
+                  href={SITE.emailHref}
+                  className="flex items-center gap-3 text-foreground hover:text-primary"
+                >
                   <Mail className="h-4 w-4 text-primary" /> {SITE.email}
                 </a>
               </li>
@@ -103,19 +114,26 @@ export function SiteFooter() {
         <div className="mt-14 rounded-3xl border border-border bg-surface/50 p-6">
           <p className={headingCls + " mb-3"}>Areas We Serve</p>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Digital marketing agency in Chandigarh · Social media marketing services in Himachal Pradesh ·
-            Digital marketing company in Punjab · SEO services in Punjab · Digital marketing agency in Haryana ·
-            Digital marketing services in Uttar Pradesh · Social media marketing services in Delhi NCR · and
-            businesses across India — all served from our base in Chandigarh.
+            Digital marketing agency in Chandigarh · Social media marketing services in Himachal
+            Pradesh · Digital marketing company in Punjab · SEO services in Punjab · Digital
+            marketing agency in Haryana · Digital marketing services in Uttar Pradesh · Social media
+            marketing services in Delhi NCR · and businesses across India — all served from our base
+            in Chandigarh.
           </p>
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 text-xs text-muted-foreground md:flex-row">
           <p>© {new Date().getFullYear()} Social Waale. All rights reserved.</p>
           <div className="flex gap-5">
-            <Link to="/privacy-policy" className="hover:text-foreground">Privacy Policy</Link>
-            <Link to="/terms-and-conditions" className="hover:text-foreground">Terms & Conditions</Link>
-            <a href="/sitemap.xml" className="hover:text-foreground">Sitemap</a>
+            <Link to="/privacy-policy" className="hover:text-foreground">
+              Privacy Policy
+            </Link>
+            <Link to="/terms-and-conditions" className="hover:text-foreground">
+              Terms & Conditions
+            </Link>
+            <a href="/sitemap.xml" className="hover:text-foreground">
+              Sitemap
+            </a>
           </div>
         </div>
       </div>

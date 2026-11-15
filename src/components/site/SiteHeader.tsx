@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, Phone, X, ArrowRight } from "lucide-react";
+import { ChevronDown, Menu, Phone, X, ArrowRight, Video, Sparkles } from "lucide-react";
 import { Logo } from "./Logo";
 import { Button } from "@/components/ui/button";
 import { services } from "@/data/services";
@@ -11,6 +11,16 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+] as const;
+
+export const TOOLS_NAV_ITEMS = [
+  {
+    name: "Instagram Video Downloader",
+    to: "/instagram-video-downloader" as const,
+    tagline: "Save high-definition MP4 videos directly without watermarks",
+    icon: Video,
+    badge: "Popular",
+  },
 ] as const;
 
 const NAV_AFTER = [
@@ -26,6 +36,7 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [mobileServices, setMobileServices] = useState(false);
+  const [mobileTools, setMobileTools] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -101,6 +112,69 @@ export function SiteHeader() {
                 >
                   View all services <ArrowRight className="h-4 w-4" />
                 </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Tools Dropdown */}
+          <div className="group relative">
+            <button
+              type="button"
+              className={cn(linkCls, "inline-flex items-center gap-1 cursor-pointer")}
+              aria-haspopup="true"
+            >
+              Tools{" "}
+              <ChevronDown className="h-3.5 w-3.5 transition-transform group-hover:rotate-180" />
+            </button>
+            <div className="invisible absolute left-1/2 top-full w-[380px] -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              <div
+                className="glass rounded-3xl p-3 shadow-card space-y-1"
+                style={{
+                  background: "#080F35",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                }}
+              >
+                <div className="px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#FFD84A]">
+                  Free Social Media Tools
+                </div>
+                {TOOLS_NAV_ITEMS.map((tool) => {
+                  const Icon = tool.icon;
+                  return (
+                    <Link
+                      key={tool.to}
+                      to={tool.to}
+                      className="flex items-start gap-3 rounded-2xl p-3 transition-colors hover:bg-white/10 group/item"
+                    >
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-tr from-[#FF941E] to-[#FFD84A] text-[#080F35] font-bold shadow-md">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="block text-sm font-bold text-white group-hover/item:text-[#FFD84A] transition-colors">
+                            {tool.name}
+                          </span>
+                          {tool.badge && (
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-extrabold uppercase bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                              {tool.badge}
+                            </span>
+                          )}
+                        </div>
+                        <span className="mt-0.5 line-clamp-1 block text-xs text-slate-300">
+                          {tool.tagline}
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
+                <div className="pt-2 border-t border-white/10">
+                  <Link
+                    to="/instagram-downloader"
+                    className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-[#FFD84A] hover:bg-white/5 transition"
+                  >
+                    <span>View all Instagram tools</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -183,7 +257,41 @@ export function SiteHeader() {
                 ))}
               </div>
             )}
-            {NAV_AFTER.map((n) => (
+            {/* Mobile Tools Accordion */}
+            <button
+              type="button"
+              onClick={() => setMobileTools((v) => !v)}
+              className="flex items-center justify-between rounded-2xl px-4 py-3 text-left text-lg font-semibold hover:bg-accent"
+              aria-expanded={mobileTools}
+            >
+              Tools
+              <ChevronDown
+                className={cn("h-5 w-5 transition-transform", mobileTools && "rotate-180")}
+              />
+            </button>
+            {mobileTools && (
+              <div className="ml-3 flex flex-col border-l border-border pl-3">
+                {TOOLS_NAV_ITEMS.map((tool) => (
+                  <Link
+                    key={tool.to}
+                    to={tool.to}
+                    onClick={close}
+                    className="rounded-xl px-3 py-2.5 text-sm font-semibold text-primary hover:text-foreground"
+                  >
+                    {tool.name}
+                  </Link>
+                ))}
+                <Link
+                  to="/instagram-downloader"
+                  onClick={close}
+                  className="rounded-xl px-3 py-2 text-xs font-semibold text-[#FFD84A]"
+                >
+                  All Tools &rarr;
+                </Link>
+              </div>
+            )}
+
+          {NAV_AFTER.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}

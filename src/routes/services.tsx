@@ -6,13 +6,25 @@ import { PageWrapper } from "@/components/site/PageWrapper";
 import { services } from "@/data/services";
 import { pageHead, organizationRef } from "@/lib/seo";
 import { absoluteUrl } from "@/config/site";
+import { getPublicServicesFn } from "@/lib/cms/cms.functions";
 
 export const Route = createFileRoute("/services")({
+  loader: async () => {
+    try {
+      const res = await getPublicServicesFn();
+      if (res.ok && res.services.length > 0) {
+        return { cmsServices: res.services };
+      }
+    } catch (e) {
+      console.error("Error loading CMS services in /services:", e);
+    }
+    return { cmsServices: null };
+  },
   head: () =>
     pageHead({
       title: "Digital Marketing Services in Chandigarh | Social Waale",
       description:
-        "Explore Social Waale’s 10 digital marketing services: SEO, Google Ads, social media, content, branding, websites, CRO, offline ads, PR and photoshoots.",
+        "Explore Social Waale’s digital marketing services: SEO, Google Ads, social media, content, branding, websites, CRO, offline ads, PR and photoshoots.",
       path: "/services",
       breadcrumbs: [
         { name: "Home", path: "/" },
@@ -40,6 +52,11 @@ export const Route = createFileRoute("/services")({
 });
 
 function ServicesPage() {
+  const loaderData = Route.useLoaderData();
+  const displayServices = (loaderData?.cmsServices && loaderData.cmsServices.length > 0)
+    ? (loaderData.cmsServices as any[])
+    : services;
+
   return (
     <PageWrapper>
       <PageHero
@@ -57,12 +74,12 @@ function ServicesPage() {
       />
       <Section>
         <SectionHeading
-          eyebrow="10 services, one team"
+          eyebrow={`${displayServices.length} services, one team`}
           title="Everything your brand needs to grow online and offline"
           description="Each service page explains what’s included, how we work and who it’s for."
         />
         <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s, i) => (
+          {displayServices.map((s, i) => (
             <ServiceCard key={s.slug} service={s} index={i} />
           ))}
         </div>

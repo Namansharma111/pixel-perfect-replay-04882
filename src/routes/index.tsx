@@ -59,6 +59,17 @@ import { NorthIndiaArtwork } from "@/components/site/NorthIndiaArtwork";
 import { services } from "@/data/services";
 import { SITE } from "@/config/site";
 import { pageHead, faqSchema } from "@/lib/seo";
+import { getPublicHomepageFn } from "@/lib/cms/cms.functions";
+import type {
+  CMSHomepageHero,
+  CMSHomepageTrustBar,
+  CMSHomepageAbout,
+  CMSHomepageServices,
+  CMSHomepageWhyChoose,
+  CMSHomepageProcess,
+  CMSHomepageTestimonials,
+  CMSHomepageFaqs,
+} from "@/lib/cms/types";
 
 const HOME_FAQS = [
   {
@@ -92,46 +103,75 @@ const HOME_FAQS = [
 ];
 
 export const Route = createFileRoute("/")({
-  head: () =>
-    pageHead({
-      title: "Digital Marketing Agency in Chandigarh | Social Waale",
-      description:
-        "Social Waale is a Chandigarh-based digital marketing agency for social media marketing, SEO, Google Ads, branding and websites across North India.",
+  loader: async () => {
+    try {
+      const res = await getPublicHomepageFn();
+      return { homepage: res.ok ? res.homepage : null };
+    } catch {
+      return { homepage: null };
+    }
+  },
+  head: ({ loaderData }) => {
+    const hp = loaderData?.homepage;
+    const title = hp?.seo?.metaTitle || "Digital Marketing Agency in Chandigarh | Social Waale";
+    const description =
+      hp?.seo?.metaDescription ||
+      "Social Waale is a Chandigarh-based digital marketing agency for social media marketing, SEO, Google Ads, branding and websites across North India.";
+    const activeFaqs =
+      hp?.faqs?.enabled !== false && hp?.faqs?.items && hp.faqs.items.length > 0
+        ? hp.faqs.items
+            .filter((f: any) => f.enabled !== false)
+            .map((f: any) => ({ q: f.q, a: f.a }))
+        : HOME_FAQS;
+
+    return pageHead({
+      title,
+      description,
       path: "/",
-      jsonLd: [faqSchema(HOME_FAQS)],
-    }),
+      jsonLd: [faqSchema(activeFaqs.length > 0 ? activeFaqs : HOME_FAQS)],
+    });
+  },
   component: HomePage,
 });
 
 function HomePage() {
+  const loaderData = Route.useLoaderData();
+  const hp = loaderData?.homepage;
+
   return (
     <>
-      <Hero />
-      <TrustBar />
-      <AboutIntro />
-      <ServicesGrid />
-      <PortfolioSection />
-      <WhyChoose />
-      <Process />
-      <Industries />
+      {(!hp || hp.hero?.enabled !== false) && <Hero data={hp?.hero} />}
+      {(!hp || hp.trustBar?.enabled !== false) && <TrustBar data={hp?.trustBar} />}
+      {(!hp || hp.about?.enabled !== false) && <AboutIntro data={hp?.about} />}
+      {(!hp || hp.services?.enabled !== false) && <ServicesGrid data={hp?.services} />}
+      {(!hp || hp.portfolio?.enabled !== false) && <PortfolioSection />}
+      {(!hp || hp.whyChoose?.enabled !== false) && <WhyChoose data={hp?.whyChoose} />}
+      {(!hp || hp.process?.enabled !== false) && <Process />}
+      {(!hp || hp.industries?.enabled !== false) && <Industries />}
       <FeaturedWork />
       <Locations />
-      <Testimonials />
-      <SeoContent />
-      <CTASection />
+      {(!hp || hp.testimonials?.enabled !== false) && <Testimonials data={hp?.testimonials} />}
+      {(!hp || hp.faqs?.enabled !== false) && <SeoContent data={hp?.faqs} />}
+      {(!hp || hp.cta?.enabled !== false) && (
+        <CTASection
+          {...(hp?.cta?.heading ? { title: hp.cta.heading } : {})}
+          {...(hp?.cta?.description ? { description: hp.cta.description } : {})}
+        />
+      )}
       <LongFormSeoContent />
     </>
   );
 }
 
 /* ---------------- Hero (Redesigned per IMAGE 1 reference) ---------------- */
-function Hero() {
-  const stats = [
+function Hero({ data }: { data?: CMSHomepageHero | undefined }) {
+  const defaultStats = [
     { value: "50+", label: "Clients Served" },
     { value: "10", label: "Growth Services" },
     { value: "1–2 Years", label: "Experience" },
     { value: "Pan India", label: "Service Reach" },
   ];
+  const stats = data?.stats && data.stats.length > 0 ? data.stats : defaultStats;
 
   return (
     <section className="relative -mt-20 overflow-hidden pt-20 bg-gradient-to-b from-[#080F35] via-[#0E1B5A] to-[#080F35] text-white">
@@ -157,28 +197,31 @@ function Hero() {
             {/* 1. Location badge with location pin icon (matching Image 1) */}
             <div className="inline-flex items-center gap-2 rounded-full border border-[#FFD84A]/30 bg-[#080F35]/90 px-3.5 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#FFD84A] shadow-sm backdrop-blur-md transition-colors hover:border-[#FFD84A]/60">
               <MapPin className="h-3.5 w-3.5 text-[#FFD84A] shrink-0" />
-              <span>CHANDIGARH-BASED DIGITAL MARKETING AGENCY</span>
+              <span>{data?.eyebrowBadge || "CHANDIGARH-BASED DIGITAL MARKETING AGENCY"}</span>
             </div>
 
             {/* 2. Main H1 headline with yellow-to-orange gradient highlight */}
             <h1 className="mt-5 text-3xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem]">
-              Digital Marketing Agency in Chandigarh That Turns Brands Into{" "}
-              <span className="bg-gradient-to-r from-[#FFD84A] via-[#FFB834] to-[#FF941E] bg-clip-text text-transparent">
-                Growth Stories.
-              </span>
+              {data?.h1 ? (
+                data.h1
+              ) : (
+                <>
+                  Digital Marketing Agency in Chandigarh That Turns Brands Into{" "}
+                  <span className="bg-gradient-to-r from-[#FFD84A] via-[#FFB834] to-[#FF941E] bg-clip-text text-transparent">
+                    Growth Stories.
+                  </span>
+                </>
+              )}
             </h1>
 
             {/* 3. Description paragraphs */}
             <p className="mt-6 text-base leading-relaxed text-[#D5DAE7] sm:text-lg sm:leading-relaxed">
-              Looking for a reliable digital marketing agency in Chandigarh? Social Waale helps
-              businesses across Chandigarh, Punjab, Himachal Pradesh, Haryana and beyond build a
-              stronger online presence through SEO, social media marketing, Google Ads, creative
-              branding and digital growth solutions.
+              {data?.description1 ||
+                "Looking for a reliable digital marketing agency in Chandigarh? Social Waale helps businesses across Chandigarh, Punjab, Himachal Pradesh, Haryana and beyond build a stronger online presence through SEO, social media marketing, Google Ads, creative branding and digital growth solutions."}
             </p>
             <p className="mt-3.5 text-sm leading-relaxed text-[#D5DAE7]/90 sm:text-base sm:leading-relaxed">
-              From building brand awareness to attracting relevant audiences and generating
-              meaningful enquiries, we combine strategy, creativity and technology to move your
-              business forward.
+              {data?.description2 ||
+                "From building brand awareness to attracting relevant audiences and generating meaningful enquiries, we combine strategy, creativity and technology to move your business forward."}
             </p>
 
             {/* 4. Two CTA buttons side by side */}
@@ -189,8 +232,8 @@ function Hero() {
                 size="xl"
                 className="group relative h-13 rounded-full bg-gradient-to-r from-[#FFD84A] to-[#FF941E] px-7 font-bold text-[#080F35] shadow-[0_12px_28px_-6px_rgba(255,148,30,0.45)] transition-all duration-300 hover:scale-[1.02] hover:brightness-105 active:scale-[0.98]"
               >
-                <Link to="/contact" className="inline-flex items-center gap-2">
-                  <span>Request a Free Quote</span>
+                <Link to={data?.primaryCtaLink || "/contact"} className="inline-flex items-center gap-2">
+                  <span>{data?.primaryCtaText || "Request a Free Quote"}</span>
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
@@ -201,9 +244,9 @@ function Hero() {
                 size="xl"
                 className="h-13 rounded-full border border-white/20 bg-white/5 px-6 font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/10 active:scale-[0.98]"
               >
-                <a href="tel:+919805789363" className="inline-flex items-center gap-2.5">
+                <a href={data?.secondaryCtaLink || "tel:+919805789363"} className="inline-flex items-center gap-2.5">
                   <Phone className="h-4 w-4 text-[#FFD84A]" />
-                  <span>+91 9805789363</span>
+                  <span>{data?.secondaryCtaText || "+91 9805789363"}</span>
                 </a>
               </Button>
             </div>
@@ -429,7 +472,7 @@ function SnapchatLogo({ className }: { className?: string }) {
 }
 
 /* ---------------- Trust bar (Redesigned per IMAGE 1 reference) ---------------- */
-function TrustBar() {
+function TrustBar({ data }: { data?: CMSHomepageTrustBar | undefined }) {
   const sampleLogos = [
     {
       name: "Google",
@@ -483,7 +526,7 @@ function TrustBar() {
     },
   ];
 
-  const stats = [
+  const defaultStats = [
     {
       value: "50+",
       title: "Clients Served",
@@ -505,6 +548,7 @@ function TrustBar() {
       description: "Chandigarh, Tricity & nationwide",
     },
   ];
+  const stats = data?.stats && data.stats.length > 0 ? data.stats : defaultStats;
 
   const trackRef = useRef<HTMLDivElement>(null);
   const isHoveredRef = useRef(false);
@@ -565,19 +609,26 @@ function TrustBar() {
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#FFD84A]/30 bg-[#080F35]/90 px-4 py-1.5 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#FFD84A] shadow-sm backdrop-blur-md">
             <span>✦</span>
-            <span>TRUSTED BY BUSINESSES ACROSS NORTH INDIA</span>
+            <span>{data?.eyebrowBadge || "TRUSTED BY BUSINESSES ACROSS NORTH INDIA"}</span>
           </div>
 
           <h2 className="mt-5 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] leading-[1.18]">
-            Trusted by{" "}
-            <span className="bg-gradient-to-r from-[#FFD84A] via-[#FFB834] to-[#FF941E] bg-clip-text text-transparent">
-              Ambitious Brands
-            </span>{" "}
-            & Growing Businesses
+            {data?.heading ? (
+              data.heading
+            ) : (
+              <>
+                Trusted by{" "}
+                <span className="bg-gradient-to-r from-[#FFD84A] via-[#FFB834] to-[#FF941E] bg-clip-text text-transparent">
+                  Ambitious Brands
+                </span>{" "}
+                & Growing Businesses
+              </>
+            )}
           </h2>
 
           <p className="mt-4 text-base leading-relaxed text-[#D5DAE7] sm:text-lg">
-            From emerging startups to established businesses, Social Waale helps brands build stronger digital identities and meaningful online connections.
+            {data?.description ||
+              "From emerging startups to established businesses, Social Waale helps brands build stronger digital identities and meaningful online connections."}
           </p>
         </div>
       </Container>
@@ -681,20 +732,22 @@ function TrustBar() {
 }
 
 /* ---------------- About intro ---------------- */
-function AboutIntro() {
-  const points = [
+function AboutIntro({ data }: { data?: CMSHomepageAbout | undefined }) {
+  const defaultPoints = [
     "Strategy first — every campaign starts with your business goals",
     "One team for social, search, ads, design and web",
     "Clear reporting you can actually understand",
     "Local understanding of North Indian audiences",
   ];
+  const points = data?.highlights && data.highlights.length > 0 ? data.highlights : defaultPoints;
+
   return (
     <Section labelledBy="about-heading">
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <div className="reveal relative">
           <img
-            src={aboutImg}
-            alt="Social Waale creative workspace with analytics dashboard, social media feed and brand mood boards"
+            src={data?.featuredImage || aboutImg}
+            alt={data?.imageAlt || "Social Waale creative workspace with analytics dashboard, social media feed and brand mood boards"}
             loading="lazy"
             width={1280}
             height={960}
@@ -709,14 +762,21 @@ function AboutIntro() {
           <SectionHeading
             align="left"
             id="about-heading"
-            eyebrow="About Social Waale"
+            eyebrow={data?.eyebrowBadge || "About Social Waale"}
             title={
-              <>
-                A Chandigarh agency built for{" "}
-                <span className="text-gradient">ambitious brands</span>
-              </>
+              data?.heading ? (
+                data.heading
+              ) : (
+                <>
+                  A Chandigarh agency built for{" "}
+                  <span className="text-gradient">ambitious brands</span>
+                </>
+              )
             }
-            description="Social Waale is a digital marketing and social media marketing agency based in Chandigarh. In our first years we’ve worked with 50+ businesses — from local shops and clinics to growing service brands — helping them show up online with confidence and turn attention into real conversations."
+            description={
+              data?.descriptionParagraphs?.[0] ||
+              "Social Waale is a digital marketing and social media marketing agency based in Chandigarh. In our first years we’ve worked with 50+ businesses — from local shops and clinics to growing service brands — helping them show up online with confidence and turn attention into real conversations."
+            }
           />
           <ul className="mt-8 grid gap-3">
             {points.map((p) => (
@@ -726,8 +786,8 @@ function AboutIntro() {
             ))}
           </ul>
           <Button asChild variant="glass" size="lg" className="mt-8">
-            <Link to="/about">
-              More about us <ArrowUpRight />
+            <Link to={data?.readMoreButtonLink || "/about"}>
+              {data?.readMoreButtonText || "More about us"} <ArrowUpRight />
             </Link>
           </Button>
         </div>
@@ -737,25 +797,37 @@ function AboutIntro() {
 }
 
 /* ---------------- Services ---------------- */
-function ServicesGrid() {
+function ServicesGrid({ data }: { data?: CMSHomepageServices | undefined }) {
+  const renderedServices =
+    data?.mode === "selected" && data.selectedSlugs && data.selectedSlugs.length > 0
+      ? services.filter((s) => data.selectedSlugs.includes(s.slug))
+      : services;
+
   return (
     <Section labelledBy="services-heading" className="bg-gradient-section">
       <SectionHeading
         id="services-heading"
-        eyebrow="What we do"
+        eyebrow={data?.eyebrowBadge || "What we do"}
         title={
-          <>
-            10 services. <span className="text-gradient">One growth partner.</span>
-          </>
+          data?.heading ? (
+            data.heading
+          ) : (
+            <>
+              10 services. <span className="text-gradient">One growth partner.</span>
+            </>
+          )
         }
-        description="From the first impression on Instagram to the final click on your website, we cover every stage of your customer’s digital journey."
+        description={
+          data?.description ||
+          "From the first impression on Instagram to the final click on your website, we cover every stage of your customer’s digital journey."
+        }
       />
       <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {services.map((s, i) => (
+        {renderedServices.map((s, i) => (
           <ServiceCard key={s.slug} service={s} index={i} />
         ))}
         <Link
-          to="/contact"
+          to={data?.ctaButtonLink || "/contact"}
           className="reveal card-premium group flex flex-col justify-between overflow-hidden border-primary/30 bg-navy p-7 sm:col-span-2 xl:col-span-2"
         >
           <div>
@@ -765,7 +837,7 @@ function ServicesGrid() {
             </h3>
           </div>
           <span className="mt-6 inline-flex items-center gap-2 font-semibold text-primary">
-            Talk to our team{" "}
+            {data?.ctaButtonText || "Talk to our team"}{" "}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </Link>
@@ -775,8 +847,8 @@ function ServicesGrid() {
 }
 
 /* ---------------- Why choose ---------------- */
-function WhyChoose() {
-  const items = [
+function WhyChoose({ data }: { data?: CMSHomepageWhyChoose | undefined }) {
+  const defaultItems = [
     {
       Icon: Compass,
       title: "Strategy before posting",
@@ -808,17 +880,34 @@ function WhyChoose() {
       text: "Talk directly to the people working on your account over WhatsApp or call — no ticket queues, no runaround.",
     },
   ];
+
+  const items =
+    data?.items && data.items.length > 0
+      ? data.items.map((it) => ({
+          Icon: Compass,
+          title: it.title,
+          text: it.description,
+        }))
+      : defaultItems;
+
   return (
     <Section labelledBy="why-heading">
       <SectionHeading
         id="why-heading"
-        eyebrow="Why Social Waale"
+        eyebrow={data?.eyebrowBadge || "Why Social Waale"}
         title={
-          <>
-            Why businesses choose <span className="text-gradient">Social Waale</span>
-          </>
+          data?.heading ? (
+            data.heading
+          ) : (
+            <>
+              Why businesses choose <span className="text-gradient">Social Waale</span>
+            </>
+          )
         }
-        description="We’re a young, hands-on agency — which means you get senior attention, quick decisions and a team that genuinely cares about your growth."
+        description={
+          data?.description ||
+          "We’re a young, hands-on agency — which means you get senior attention, quick decisions and a team that genuinely cares about your growth."
+        }
       />
       <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {items.map(({ Icon, title, text }) => (
@@ -1309,8 +1398,57 @@ function Locations() {
   );
 }
 
-/* ---------------- Testimonials (honest) ---------------- */
-function Testimonials() {
+/* ---------------- Testimonials ---------------- */
+function Testimonials({ data }: { data?: CMSHomepageTestimonials | undefined }) {
+  const activeReviews = (data?.items || []).filter((item) => item.enabled !== false);
+  const hasReviews = activeReviews.length > 0;
+
+  if (hasReviews) {
+    return (
+      <Section labelledBy="testimonials-heading" className="bg-gradient-section">
+        <SectionHeading
+          id="testimonials-heading"
+          eyebrow={data?.eyebrowBadge || "Client Reviews"}
+          title={data?.heading || "What our clients say about partnering with us"}
+          description={data?.description || "Real feedback from brands that scale with Social Waale."}
+        />
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {activeReviews.map((item) => (
+            <div key={item.id} className="reveal card-premium p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-1 text-[#FFD84A] mb-3">
+                  {Array.from({ length: item.rating || 5 }).map((_, idx) => (
+                    <span key={idx}>★</span>
+                  ))}
+                </div>
+                <p className="text-sm sm:text-base text-slate-200 italic leading-relaxed">
+                  "{item.text}"
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-3">
+                {item.avatarUrl ? (
+                  <img src={item.avatarUrl} alt={item.name} className="w-10 h-10 rounded-full object-cover" />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#FF941E] to-[#FFD84A] text-[#080F35] font-black text-xs flex items-center justify-center">
+                    {item.name.slice(0, 2).toUpperCase()}
+                  </div>
+                )}
+                <div>
+                  <h4 className="text-sm font-bold text-white">{item.name}</h4>
+                  {(item.designation || item.company) && (
+                    <p className="text-xs text-slate-400">
+                      {[item.designation, item.company].filter(Boolean).join(" • ")}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+    );
+  }
+
   return (
     <Section labelledBy="testimonials-heading" className="bg-gradient-section">
       <div className="reveal mx-auto max-w-4xl card-premium overflow-hidden p-8 text-center sm:p-14">
@@ -1345,7 +1483,7 @@ function Testimonials() {
 }
 
 /* ---------------- SEO educational content ---------------- */
-function SeoContent() {
+function SeoContent({ data }: { data?: CMSHomepageFaqs | undefined }) {
   return (
     <Section labelledBy="guide-heading">
       <div className="grid gap-12 lg:grid-cols-12">
@@ -1419,6 +1557,15 @@ function SeoContent() {
             That’s exactly how we work at Social Waale. If you’d like a second opinion on your
             current marketing, <Link to="/contact">get in touch</Link> for a free consultation.
           </p>
+
+          {data?.items && data.items.length > 0 && (
+            <div className="mt-12 pt-8 border-t border-slate-700/60 not-prose">
+              <h3 className="text-2xl font-bold text-white mb-6">
+                {data.heading || "Frequently Asked Questions"}
+              </h3>
+              <FAQList faqs={data.items.filter((item) => item.enabled !== false).map((faq) => ({ q: faq.q, a: faq.a }))} />
+            </div>
+          )}
         </div>
       </div>
     </Section>

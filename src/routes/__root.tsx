@@ -17,7 +17,10 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { NorthIndiaSection } from "@/components/site/NorthIndiaSection";
 import { FloatingWhatsApp } from "@/components/site/FloatingWhatsApp";
+import { Toaster } from "sonner";
 import { SITE, absoluteUrl } from "@/config/site";
+import { AdminAuthProvider } from "@/lib/cms/auth-context";
+import { initTracking } from "@/lib/tracking";
 
 function NotFoundComponent() {
   return (
@@ -177,9 +180,28 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const isAdmin = location.pathname.startsWith("/admin");
+
+  useEffect(() => {
+    initTracking();
+  }, [location.pathname, location.search]);
+
+  if (isAdmin) {
+    return (
+      <QueryClientProvider client={queryClient}>
+        <AdminAuthProvider>
+          <Toaster position="top-right" richColors />
+          <main id="admin-main" className="min-h-screen bg-[#080F35] text-white">
+            <Outlet />
+          </main>
+        </AdminAuthProvider>
+      </QueryClientProvider>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster position="top-right" richColors />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"

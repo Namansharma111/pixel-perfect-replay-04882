@@ -5,6 +5,7 @@ import { SocialLinks } from "./SocialLinks";
 import { services } from "@/data/services";
 import { articles } from "@/data/articles";
 import { SITE } from "@/config/site";
+import { FooterCallbackForm } from "./FooterCallbackForm";
 
 const company = [
   { to: "/about", label: "About Us" },
@@ -111,7 +112,12 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 rounded-3xl border border-border bg-surface/50 p-6">
+        {/* Quick Callback Request Form */}
+        <div className="mt-12">
+          <FooterCallbackForm />
+        </div>
+
+        <div className="mt-10 rounded-3xl border border-border bg-surface/50 p-6">
           <p className={headingCls + " mb-3"}>Areas We Serve</p>
           <p className="text-sm leading-relaxed text-muted-foreground">
             Digital marketing agency in Chandigarh · Social media marketing services in Himachal

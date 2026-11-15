@@ -1,11 +1,18 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Clock } from "lucide-react";
+import { ArrowUpRight, Clock, Briefcase } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 import type { Article, ServiceContent } from "@/data/types";
 import { SERVICE_ICONS } from "./service-icons";
 import { CATEGORY_IMAGES, CATEGORY_LABELS, formatDate } from "@/data/articles";
 
 export function ServiceCard({ service, index }: { service: ServiceContent; index?: number }) {
-  const Icon = SERVICE_ICONS[service.slug];
+  let Icon = SERVICE_ICONS[service.slug as keyof typeof SERVICE_ICONS];
+  if (!Icon && (service as any).icon) {
+    Icon = (LucideIcons as any)[(service as any).icon];
+  }
+  if (!Icon) {
+    Icon = Briefcase;
+  }
   return (
     <Link
       to={`/${service.slug}`}

@@ -57,7 +57,8 @@ import {
   contactSchema,
   type ContactInput,
 } from "@/lib/form-schemas";
-import { submitContact } from "@/lib/forms.functions";
+import { submitWebsiteLeadFn } from "@/lib/cms/cms.functions";
+import { getLeadTrackingPayload } from "@/lib/tracking";
 
 /* -------------------------------------------------------------------------- */
 /*                                 ROUTE SETUP                                */
@@ -385,7 +386,7 @@ const ABOUT_FAQS = [
 /* -------------------------------------------------------------------------- */
 
 function HeroInquiryCard() {
-  const submit = useServerFn(submitContact);
+  const submitLead = useServerFn(submitWebsiteLeadFn);
   const location = useLocation();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [serverError, setServerError] = useState("");
@@ -413,20 +414,34 @@ function HeroInquiryCard() {
     setStatus("idle");
     setServerError("");
     try {
-      const res = await submit({
+      const tracking = getLeadTrackingPayload(location.pathname);
+      const res = await submitLead({
         data: {
-          ...values,
+          fullName: values.fullName,
           businessName: values.businessName || "About Page Inquiry",
+          phone: values.phone,
+          email: values.email,
+          service: values.service,
           budget: values.budget || "Prefer to discuss",
-          sourcePage: location.pathname,
+          message: values.message || "Consultation enquiry submitted from About Us page.",
+          sourceUrl: tracking.sourceUrl,
+          formName: "About Page Free Consultation Form",
+          formType: "consultation",
+          utmSource: tracking.utmSource,
+          utmMedium: tracking.utmMedium,
+          utmCampaign: tracking.utmCampaign,
+          utmContent: tracking.utmContent,
+          utmTerm: tracking.utmTerm,
+          referrer: tracking.referrer,
+          website: values.website,
         },
       });
-      if (res.ok) {
+      if (res && res.ok) {
         setStatus("success");
         reset();
       } else {
         setStatus("error");
-        setServerError(res.error || "Submission could not be completed.");
+        setServerError("Submission could not be completed.");
       }
     } catch {
       setStatus("error");

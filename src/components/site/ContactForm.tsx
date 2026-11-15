@@ -11,16 +11,22 @@ import {
   contactSchema,
   type ContactInput,
 } from "@/lib/form-schemas";
-import { submitContact } from "@/lib/forms.functions";
+import { submitWebsiteLeadFn } from "@/lib/cms/cms.functions";
+import { getLeadTrackingPayload } from "@/lib/tracking";
+import type { FormType } from "@/lib/cms/types";
 import { Field, Honeypot, fieldCls } from "./form-fields";
 import { SITE } from "@/config/site";
 
 export function ContactForm({
   defaultService,
+  formName = "Contact Us & Project Inquiry Form",
+  formType = "contact",
 }: {
   defaultService?: (typeof SERVICE_OPTIONS)[number] | undefined;
+  formName?: string | undefined;
+  formType?: FormType | undefined;
 }) {
-  const submit = useServerFn(submitContact);
+  const submitLead = useServerFn(submitWebsiteLeadFn);
   const location = useLocation();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [serverError, setServerError] = useState("");
@@ -48,15 +54,37 @@ export function ContactForm({
     setStatus("idle");
     setServerError("");
     try {
-      const res = await submit({ data: { ...values, sourcePage: location.pathname } });
-      if (res.ok) {
+      const tracking = getLeadTrackingPayload(location.pathname);
+      const res = await submitLead({
+        data: {
+          fullName: values.fullName,
+          businessName: values.businessName || undefined,
+          phone: values.phone,
+          email: values.email,
+          service: values.service,
+          budget: values.budget || undefined,
+          message: values.message,
+          sourceUrl: tracking.sourceUrl,
+          formName,
+          formType,
+          utmSource: tracking.utmSource,
+          utmMedium: tracking.utmMedium,
+          utmCampaign: tracking.utmCampaign,
+          utmContent: tracking.utmContent,
+          utmTerm: tracking.utmTerm,
+          referrer: tracking.referrer,
+          website: values.website,
+        },
+      });
+
+      if (res && res.ok) {
         setStatus("success");
         reset();
       } else {
         setStatus("error");
-        setServerError(res.error);
+        setServerError("We couldn't save your enquiry. Please check your details and try again.");
       }
-    } catch {
+    } catch (err) {
       setStatus("error");
       setServerError(
         "Something went wrong while sending. Please check your details and try again.",

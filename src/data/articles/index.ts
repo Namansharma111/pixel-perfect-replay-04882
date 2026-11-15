@@ -1,6 +1,7 @@
 import type { Article, ArticleCategory } from "../types";
 import { articlesPart1 } from "./part1";
 import { articlesPart2 } from "./part2";
+import { articlesPart3 } from "./part3";
 
 import seoImg from "@/assets/blog-seo.jpg";
 import socialImg from "@/assets/blog-social.jpg";
@@ -11,8 +12,8 @@ import websiteImg from "@/assets/blog-website.jpg";
 import contentImg from "@/assets/blog-content.jpg";
 
 /**
- * To publish a new article: add an Article object to part1.ts / part2.ts (or a new part
- * file imported here). It is automatically listed on /articles, gets its own page at
+ * To publish a new article: add an Article object to part1.ts / part2.ts / part3.ts.
+ * It is automatically listed on /articles, gets its own page at
  * /articles/<slug>, and is added to the sitemap.
  */
 export const CATEGORY_LABELS: Record<ArticleCategory, string> = {
@@ -35,7 +36,7 @@ export const CATEGORY_IMAGES: Record<ArticleCategory, string> = {
   "content-marketing": contentImg,
 };
 
-export const articles: Article[] = [...articlesPart1, ...articlesPart2].sort((a, b) =>
+export const articles: Article[] = [...articlesPart1, ...articlesPart2, ...articlesPart3].sort((a, b) =>
   b.publishedAt.localeCompare(a.publishedAt),
 );
 

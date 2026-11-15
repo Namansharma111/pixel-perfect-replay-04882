@@ -16,6 +16,13 @@ import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContentMarketingEmailAutomationRouteImport } from './routes/content-marketing-email-automation'
 import { Route as GoogleAdsPerformanceMarketingRouteImport } from './routes/google-ads-performance-marketing'
+import { Route as InstagramCarouselDownloaderRouteImport } from './routes/instagram-carousel-downloader'
+import { Route as InstagramDownloaderRouteImport } from './routes/instagram-downloader'
+import { Route as InstagramPhotoDownloaderRouteImport } from './routes/instagram-photo-downloader'
+import { Route as InstagramReelsDownloaderRouteImport } from './routes/instagram-reels-downloader'
+import { Route as InstagramStoryDownloaderRouteImport } from './routes/instagram-story-downloader'
+import { Route as InstagramVideoDownloaderRouteImport } from './routes/instagram-video-downloader'
+import { Route as InstagramViewerRouteImport } from './routes/instagram-viewer'
 import { Route as OfflineLocalAdvertisingRouteImport } from './routes/offline-local-advertising'
 import { Route as PhotoshootCreativeMediaRouteImport } from './routes/photoshoot-creative-media'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
@@ -28,8 +35,27 @@ import { Route as SocialMediaMarketingRouteImport } from './routes/social-media-
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
 import { Route as UiUxCroOptimizationRouteImport } from './routes/ui-ux-cro-optimization'
 import { Route as WebsiteAppDevelopmentRouteImport } from './routes/website-app-development'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
+import { Route as AdminAuthorsRouteImport } from './routes/admin.authors'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as AdminDashboardRouteImport } from './routes/admin.dashboard'
+import { Route as AdminDownloaderRouteImport } from './routes/admin.downloader'
+import { Route as AdminHomepageRouteImport } from './routes/admin.homepage'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminMediaRouteImport } from './routes/admin.media'
+import { Route as AdminRedirectsRouteImport } from './routes/admin.redirects'
+import { Route as AdminSeoRouteImport } from './routes/admin.seo'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminTagsRouteImport } from './routes/admin.tags'
+import { Route as ApiDownloadRouteImport } from './routes/api.download'
 import { Route as ArticlesIndexRouteImport } from './routes/articles.index'
 import { Route as ArticlesSlugRouteImport } from './routes/articles.$slug'
+import { Route as AdminArticlesIndexRouteImport } from './routes/admin.articles.index'
+import { Route as AdminArticlesIdRouteImport } from './routes/admin.articles.$id'
+import { Route as AdminArticlesNewRouteImport } from './routes/admin.articles.new'
+import { Route as AdminServicesIndexRouteImport } from './routes/admin.services.index'
+import { Route as AdminServicesIdRouteImport } from './routes/admin.services.$id'
+import { Route as AdminServicesNewRouteImport } from './routes/admin.services.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -69,6 +95,46 @@ const GoogleAdsPerformanceMarketingRoute =
     path: '/google-ads-performance-marketing',
     getParentRoute: () => rootRouteImport,
   } as any)
+const InstagramCarouselDownloaderRoute =
+  InstagramCarouselDownloaderRouteImport.update({
+    id: '/instagram-carousel-downloader',
+    path: '/instagram-carousel-downloader',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstagramDownloaderRoute = InstagramDownloaderRouteImport.update({
+  id: '/instagram-downloader',
+  path: '/instagram-downloader',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstagramPhotoDownloaderRoute =
+  InstagramPhotoDownloaderRouteImport.update({
+    id: '/instagram-photo-downloader',
+    path: '/instagram-photo-downloader',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstagramReelsDownloaderRoute =
+  InstagramReelsDownloaderRouteImport.update({
+    id: '/instagram-reels-downloader',
+    path: '/instagram-reels-downloader',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstagramStoryDownloaderRoute =
+  InstagramStoryDownloaderRouteImport.update({
+    id: '/instagram-story-downloader',
+    path: '/instagram-story-downloader',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstagramVideoDownloaderRoute =
+  InstagramVideoDownloaderRouteImport.update({
+    id: '/instagram-video-downloader',
+    path: '/instagram-video-downloader',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InstagramViewerRoute = InstagramViewerRouteImport.update({
+  id: '/instagram-viewer',
+  path: '/instagram-viewer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OfflineLocalAdvertisingRoute = OfflineLocalAdvertisingRouteImport.update({
   id: '/offline-local-advertising',
   path: '/offline-local-advertising',
@@ -129,6 +195,71 @@ const WebsiteAppDevelopmentRoute = WebsiteAppDevelopmentRouteImport.update({
   path: '/website-app-development',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAuthorsRoute = AdminAuthorsRouteImport.update({
+  id: '/admin/authors',
+  path: '/admin/authors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/admin/categories',
+  path: '/admin/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDownloaderRoute = AdminDownloaderRouteImport.update({
+  id: '/admin/downloader',
+  path: '/admin/downloader',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminHomepageRoute = AdminHomepageRouteImport.update({
+  id: '/admin/homepage',
+  path: '/admin/homepage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/admin/media',
+  path: '/admin/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRedirectsRoute = AdminRedirectsRouteImport.update({
+  id: '/admin/redirects',
+  path: '/admin/redirects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSeoRoute = AdminSeoRouteImport.update({
+  id: '/admin/seo',
+  path: '/admin/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTagsRoute = AdminTagsRouteImport.update({
+  id: '/admin/tags',
+  path: '/admin/tags',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiDownloadRoute = ApiDownloadRouteImport.update({
+  id: '/api/download',
+  path: '/api/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
   id: '/articles/',
   path: '/articles/',
@@ -137,6 +268,36 @@ const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
 const ArticlesSlugRoute = ArticlesSlugRouteImport.update({
   id: '/articles/$slug',
   path: '/articles/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminArticlesIndexRoute = AdminArticlesIndexRouteImport.update({
+  id: '/admin/articles/',
+  path: '/admin/articles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminArticlesIdRoute = AdminArticlesIdRouteImport.update({
+  id: '/admin/articles/$id',
+  path: '/admin/articles/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminArticlesNewRoute = AdminArticlesNewRouteImport.update({
+  id: '/admin/articles/new',
+  path: '/admin/articles/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminServicesIndexRoute = AdminServicesIndexRouteImport.update({
+  id: '/admin/services/',
+  path: '/admin/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminServicesIdRoute = AdminServicesIdRouteImport.update({
+  id: '/admin/services/$id',
+  path: '/admin/services/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminServicesNewRoute = AdminServicesNewRouteImport.update({
+  id: '/admin/services/new',
+  path: '/admin/services/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -148,6 +309,13 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/content-marketing-email-automation': typeof ContentMarketingEmailAutomationRoute
   '/google-ads-performance-marketing': typeof GoogleAdsPerformanceMarketingRoute
+  '/instagram-carousel-downloader': typeof InstagramCarouselDownloaderRoute
+  '/instagram-downloader': typeof InstagramDownloaderRoute
+  '/instagram-photo-downloader': typeof InstagramPhotoDownloaderRoute
+  '/instagram-reels-downloader': typeof InstagramReelsDownloaderRoute
+  '/instagram-story-downloader': typeof InstagramStoryDownloaderRoute
+  '/instagram-video-downloader': typeof InstagramVideoDownloaderRoute
+  '/instagram-viewer': typeof InstagramViewerRoute
   '/offline-local-advertising': typeof OfflineLocalAdvertisingRoute
   '/photoshoot-creative-media': typeof PhotoshootCreativeMediaRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -160,8 +328,27 @@ export interface FileRoutesByFullPath {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ui-ux-cro-optimization': typeof UiUxCroOptimizationRoute
   '/website-app-development': typeof WebsiteAppDevelopmentRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/authors': typeof AdminAuthorsRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/downloader': typeof AdminDownloaderRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/redirects': typeof AdminRedirectsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tags': typeof AdminTagsRoute
+  '/api/download': typeof ApiDownloadRoute
   '/articles/$slug': typeof ArticlesSlugRoute
   '/articles/': typeof ArticlesIndexRoute
+  '/admin/articles/$id': typeof AdminArticlesIdRoute
+  '/admin/articles/new': typeof AdminArticlesNewRoute
+  '/admin/services/$id': typeof AdminServicesIdRoute
+  '/admin/services/new': typeof AdminServicesNewRoute
+  '/admin/articles/': typeof AdminArticlesIndexRoute
+  '/admin/services/': typeof AdminServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -171,6 +358,13 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/content-marketing-email-automation': typeof ContentMarketingEmailAutomationRoute
   '/google-ads-performance-marketing': typeof GoogleAdsPerformanceMarketingRoute
+  '/instagram-carousel-downloader': typeof InstagramCarouselDownloaderRoute
+  '/instagram-downloader': typeof InstagramDownloaderRoute
+  '/instagram-photo-downloader': typeof InstagramPhotoDownloaderRoute
+  '/instagram-reels-downloader': typeof InstagramReelsDownloaderRoute
+  '/instagram-story-downloader': typeof InstagramStoryDownloaderRoute
+  '/instagram-video-downloader': typeof InstagramVideoDownloaderRoute
+  '/instagram-viewer': typeof InstagramViewerRoute
   '/offline-local-advertising': typeof OfflineLocalAdvertisingRoute
   '/photoshoot-creative-media': typeof PhotoshootCreativeMediaRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -183,8 +377,27 @@ export interface FileRoutesByTo {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ui-ux-cro-optimization': typeof UiUxCroOptimizationRoute
   '/website-app-development': typeof WebsiteAppDevelopmentRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/authors': typeof AdminAuthorsRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/downloader': typeof AdminDownloaderRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/redirects': typeof AdminRedirectsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tags': typeof AdminTagsRoute
+  '/api/download': typeof ApiDownloadRoute
   '/articles/$slug': typeof ArticlesSlugRoute
   '/articles': typeof ArticlesIndexRoute
+  '/admin/articles/$id': typeof AdminArticlesIdRoute
+  '/admin/articles/new': typeof AdminArticlesNewRoute
+  '/admin/services/$id': typeof AdminServicesIdRoute
+  '/admin/services/new': typeof AdminServicesNewRoute
+  '/admin/articles': typeof AdminArticlesIndexRoute
+  '/admin/services': typeof AdminServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -195,6 +408,13 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/content-marketing-email-automation': typeof ContentMarketingEmailAutomationRoute
   '/google-ads-performance-marketing': typeof GoogleAdsPerformanceMarketingRoute
+  '/instagram-carousel-downloader': typeof InstagramCarouselDownloaderRoute
+  '/instagram-downloader': typeof InstagramDownloaderRoute
+  '/instagram-photo-downloader': typeof InstagramPhotoDownloaderRoute
+  '/instagram-reels-downloader': typeof InstagramReelsDownloaderRoute
+  '/instagram-story-downloader': typeof InstagramStoryDownloaderRoute
+  '/instagram-video-downloader': typeof InstagramVideoDownloaderRoute
+  '/instagram-viewer': typeof InstagramViewerRoute
   '/offline-local-advertising': typeof OfflineLocalAdvertisingRoute
   '/photoshoot-creative-media': typeof PhotoshootCreativeMediaRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -207,8 +427,27 @@ export interface FileRoutesById {
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/ui-ux-cro-optimization': typeof UiUxCroOptimizationRoute
   '/website-app-development': typeof WebsiteAppDevelopmentRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
+  '/admin/authors': typeof AdminAuthorsRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/downloader': typeof AdminDownloaderRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/redirects': typeof AdminRedirectsRoute
+  '/admin/seo': typeof AdminSeoRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/tags': typeof AdminTagsRoute
+  '/api/download': typeof ApiDownloadRoute
   '/articles/$slug': typeof ArticlesSlugRoute
   '/articles/': typeof ArticlesIndexRoute
+  '/admin/articles/$id': typeof AdminArticlesIdRoute
+  '/admin/articles/new': typeof AdminArticlesNewRoute
+  '/admin/services/$id': typeof AdminServicesIdRoute
+  '/admin/services/new': typeof AdminServicesNewRoute
+  '/admin/articles/': typeof AdminArticlesIndexRoute
+  '/admin/services/': typeof AdminServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -220,6 +459,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/content-marketing-email-automation'
     | '/google-ads-performance-marketing'
+    | '/instagram-carousel-downloader'
+    | '/instagram-downloader'
+    | '/instagram-photo-downloader'
+    | '/instagram-reels-downloader'
+    | '/instagram-story-downloader'
+    | '/instagram-video-downloader'
+    | '/instagram-viewer'
     | '/offline-local-advertising'
     | '/photoshoot-creative-media'
     | '/privacy-policy'
@@ -232,8 +478,27 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/ui-ux-cro-optimization'
     | '/website-app-development'
+    | '/admin/analytics'
+    | '/admin/authors'
+    | '/admin/categories'
+    | '/admin/dashboard'
+    | '/admin/downloader'
+    | '/admin/homepage'
+    | '/admin/login'
+    | '/admin/media'
+    | '/admin/redirects'
+    | '/admin/seo'
+    | '/admin/settings'
+    | '/admin/tags'
+    | '/api/download'
     | '/articles/$slug'
     | '/articles/'
+    | '/admin/articles/$id'
+    | '/admin/articles/new'
+    | '/admin/services/$id'
+    | '/admin/services/new'
+    | '/admin/articles/'
+    | '/admin/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -243,6 +508,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/content-marketing-email-automation'
     | '/google-ads-performance-marketing'
+    | '/instagram-carousel-downloader'
+    | '/instagram-downloader'
+    | '/instagram-photo-downloader'
+    | '/instagram-reels-downloader'
+    | '/instagram-story-downloader'
+    | '/instagram-video-downloader'
+    | '/instagram-viewer'
     | '/offline-local-advertising'
     | '/photoshoot-creative-media'
     | '/privacy-policy'
@@ -255,8 +527,27 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/ui-ux-cro-optimization'
     | '/website-app-development'
+    | '/admin/analytics'
+    | '/admin/authors'
+    | '/admin/categories'
+    | '/admin/dashboard'
+    | '/admin/downloader'
+    | '/admin/homepage'
+    | '/admin/login'
+    | '/admin/media'
+    | '/admin/redirects'
+    | '/admin/seo'
+    | '/admin/settings'
+    | '/admin/tags'
+    | '/api/download'
     | '/articles/$slug'
     | '/articles'
+    | '/admin/articles/$id'
+    | '/admin/articles/new'
+    | '/admin/services/$id'
+    | '/admin/services/new'
+    | '/admin/articles'
+    | '/admin/services'
   id:
     | '__root__'
     | '/'
@@ -266,6 +557,13 @@ export interface FileRouteTypes {
     | '/contact'
     | '/content-marketing-email-automation'
     | '/google-ads-performance-marketing'
+    | '/instagram-carousel-downloader'
+    | '/instagram-downloader'
+    | '/instagram-photo-downloader'
+    | '/instagram-reels-downloader'
+    | '/instagram-story-downloader'
+    | '/instagram-video-downloader'
+    | '/instagram-viewer'
     | '/offline-local-advertising'
     | '/photoshoot-creative-media'
     | '/privacy-policy'
@@ -278,8 +576,27 @@ export interface FileRouteTypes {
     | '/terms-and-conditions'
     | '/ui-ux-cro-optimization'
     | '/website-app-development'
+    | '/admin/analytics'
+    | '/admin/authors'
+    | '/admin/categories'
+    | '/admin/dashboard'
+    | '/admin/downloader'
+    | '/admin/homepage'
+    | '/admin/login'
+    | '/admin/media'
+    | '/admin/redirects'
+    | '/admin/seo'
+    | '/admin/settings'
+    | '/admin/tags'
+    | '/api/download'
     | '/articles/$slug'
     | '/articles/'
+    | '/admin/articles/$id'
+    | '/admin/articles/new'
+    | '/admin/services/$id'
+    | '/admin/services/new'
+    | '/admin/articles/'
+    | '/admin/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -290,6 +607,13 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ContentMarketingEmailAutomationRoute: typeof ContentMarketingEmailAutomationRoute
   GoogleAdsPerformanceMarketingRoute: typeof GoogleAdsPerformanceMarketingRoute
+  InstagramCarouselDownloaderRoute: typeof InstagramCarouselDownloaderRoute
+  InstagramDownloaderRoute: typeof InstagramDownloaderRoute
+  InstagramPhotoDownloaderRoute: typeof InstagramPhotoDownloaderRoute
+  InstagramReelsDownloaderRoute: typeof InstagramReelsDownloaderRoute
+  InstagramStoryDownloaderRoute: typeof InstagramStoryDownloaderRoute
+  InstagramVideoDownloaderRoute: typeof InstagramVideoDownloaderRoute
+  InstagramViewerRoute: typeof InstagramViewerRoute
   OfflineLocalAdvertisingRoute: typeof OfflineLocalAdvertisingRoute
   PhotoshootCreativeMediaRoute: typeof PhotoshootCreativeMediaRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -302,8 +626,27 @@ export interface RootRouteChildren {
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   UiUxCroOptimizationRoute: typeof UiUxCroOptimizationRoute
   WebsiteAppDevelopmentRoute: typeof WebsiteAppDevelopmentRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
+  AdminAuthorsRoute: typeof AdminAuthorsRoute
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminDownloaderRoute: typeof AdminDownloaderRoute
+  AdminHomepageRoute: typeof AdminHomepageRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminMediaRoute: typeof AdminMediaRoute
+  AdminRedirectsRoute: typeof AdminRedirectsRoute
+  AdminSeoRoute: typeof AdminSeoRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminTagsRoute: typeof AdminTagsRoute
+  ApiDownloadRoute: typeof ApiDownloadRoute
   ArticlesSlugRoute: typeof ArticlesSlugRoute
   ArticlesIndexRoute: typeof ArticlesIndexRoute
+  AdminArticlesIdRoute: typeof AdminArticlesIdRoute
+  AdminArticlesNewRoute: typeof AdminArticlesNewRoute
+  AdminServicesIdRoute: typeof AdminServicesIdRoute
+  AdminServicesNewRoute: typeof AdminServicesNewRoute
+  AdminArticlesIndexRoute: typeof AdminArticlesIndexRoute
+  AdminServicesIndexRoute: typeof AdminServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -355,6 +698,55 @@ declare module '@tanstack/react-router' {
       path: '/google-ads-performance-marketing'
       fullPath: '/google-ads-performance-marketing'
       preLoaderRoute: typeof GoogleAdsPerformanceMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instagram-carousel-downloader': {
+      id: '/instagram-carousel-downloader'
+      path: '/instagram-carousel-downloader'
+      fullPath: '/instagram-carousel-downloader'
+      preLoaderRoute: typeof InstagramCarouselDownloaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instagram-downloader': {
+      id: '/instagram-downloader'
+      path: '/instagram-downloader'
+      fullPath: '/instagram-downloader'
+      preLoaderRoute: typeof InstagramDownloaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instagram-photo-downloader': {
+      id: '/instagram-photo-downloader'
+      path: '/instagram-photo-downloader'
+      fullPath: '/instagram-photo-downloader'
+      preLoaderRoute: typeof InstagramPhotoDownloaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instagram-reels-downloader': {
+      id: '/instagram-reels-downloader'
+      path: '/instagram-reels-downloader'
+      fullPath: '/instagram-reels-downloader'
+      preLoaderRoute: typeof InstagramReelsDownloaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instagram-story-downloader': {
+      id: '/instagram-story-downloader'
+      path: '/instagram-story-downloader'
+      fullPath: '/instagram-story-downloader'
+      preLoaderRoute: typeof InstagramStoryDownloaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instagram-video-downloader': {
+      id: '/instagram-video-downloader'
+      path: '/instagram-video-downloader'
+      fullPath: '/instagram-video-downloader'
+      preLoaderRoute: typeof InstagramVideoDownloaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/instagram-viewer': {
+      id: '/instagram-viewer'
+      path: '/instagram-viewer'
+      fullPath: '/instagram-viewer'
+      preLoaderRoute: typeof InstagramViewerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/offline-local-advertising': {
@@ -441,6 +833,97 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WebsiteAppDevelopmentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/authors': {
+      id: '/admin/authors'
+      path: '/admin/authors'
+      fullPath: '/admin/authors'
+      preLoaderRoute: typeof AdminAuthorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/admin/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/downloader': {
+      id: '/admin/downloader'
+      path: '/admin/downloader'
+      fullPath: '/admin/downloader'
+      preLoaderRoute: typeof AdminDownloaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/homepage': {
+      id: '/admin/homepage'
+      path: '/admin/homepage'
+      fullPath: '/admin/homepage'
+      preLoaderRoute: typeof AdminHomepageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/admin/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/redirects': {
+      id: '/admin/redirects'
+      path: '/admin/redirects'
+      fullPath: '/admin/redirects'
+      preLoaderRoute: typeof AdminRedirectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/seo': {
+      id: '/admin/seo'
+      path: '/admin/seo'
+      fullPath: '/admin/seo'
+      preLoaderRoute: typeof AdminSeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/tags': {
+      id: '/admin/tags'
+      path: '/admin/tags'
+      fullPath: '/admin/tags'
+      preLoaderRoute: typeof AdminTagsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/download': {
+      id: '/api/download'
+      path: '/api/download'
+      fullPath: '/api/download'
+      preLoaderRoute: typeof ApiDownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/articles/': {
       id: '/articles/'
       path: '/articles'
@@ -455,6 +938,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArticlesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/articles/': {
+      id: '/admin/articles/'
+      path: '/admin/articles'
+      fullPath: '/admin/articles/'
+      preLoaderRoute: typeof AdminArticlesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/articles/$id': {
+      id: '/admin/articles/$id'
+      path: '/admin/articles/$id'
+      fullPath: '/admin/articles/$id'
+      preLoaderRoute: typeof AdminArticlesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/articles/new': {
+      id: '/admin/articles/new'
+      path: '/admin/articles/new'
+      fullPath: '/admin/articles/new'
+      preLoaderRoute: typeof AdminArticlesNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/services/': {
+      id: '/admin/services/'
+      path: '/admin/services'
+      fullPath: '/admin/services/'
+      preLoaderRoute: typeof AdminServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/services/$id': {
+      id: '/admin/services/$id'
+      path: '/admin/services/$id'
+      fullPath: '/admin/services/$id'
+      preLoaderRoute: typeof AdminServicesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/services/new': {
+      id: '/admin/services/new'
+      path: '/admin/services/new'
+      fullPath: '/admin/services/new'
+      preLoaderRoute: typeof AdminServicesNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -466,6 +991,13 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ContentMarketingEmailAutomationRoute: ContentMarketingEmailAutomationRoute,
   GoogleAdsPerformanceMarketingRoute: GoogleAdsPerformanceMarketingRoute,
+  InstagramCarouselDownloaderRoute: InstagramCarouselDownloaderRoute,
+  InstagramDownloaderRoute: InstagramDownloaderRoute,
+  InstagramPhotoDownloaderRoute: InstagramPhotoDownloaderRoute,
+  InstagramReelsDownloaderRoute: InstagramReelsDownloaderRoute,
+  InstagramStoryDownloaderRoute: InstagramStoryDownloaderRoute,
+  InstagramVideoDownloaderRoute: InstagramVideoDownloaderRoute,
+  InstagramViewerRoute: InstagramViewerRoute,
   OfflineLocalAdvertisingRoute: OfflineLocalAdvertisingRoute,
   PhotoshootCreativeMediaRoute: PhotoshootCreativeMediaRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
@@ -478,8 +1010,27 @@ const rootRouteChildren: RootRouteChildren = {
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   UiUxCroOptimizationRoute: UiUxCroOptimizationRoute,
   WebsiteAppDevelopmentRoute: WebsiteAppDevelopmentRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
+  AdminAuthorsRoute: AdminAuthorsRoute,
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminDownloaderRoute: AdminDownloaderRoute,
+  AdminHomepageRoute: AdminHomepageRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminMediaRoute: AdminMediaRoute,
+  AdminRedirectsRoute: AdminRedirectsRoute,
+  AdminSeoRoute: AdminSeoRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminTagsRoute: AdminTagsRoute,
+  ApiDownloadRoute: ApiDownloadRoute,
   ArticlesSlugRoute: ArticlesSlugRoute,
   ArticlesIndexRoute: ArticlesIndexRoute,
+  AdminArticlesIdRoute: AdminArticlesIdRoute,
+  AdminArticlesNewRoute: AdminArticlesNewRoute,
+  AdminServicesIdRoute: AdminServicesIdRoute,
+  AdminServicesNewRoute: AdminServicesNewRoute,
+  AdminArticlesIndexRoute: AdminArticlesIndexRoute,
+  AdminServicesIndexRoute: AdminServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

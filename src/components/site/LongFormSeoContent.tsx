@@ -22,7 +22,6 @@ import {
   MapPin,
   MessageCircle,
   MessageSquare,
-  Mobile,
   Palette,
   Phone,
   RefreshCw,

@@ -1,26 +1,77 @@
-# Pixel Perfect Replay
+# Social Waale - High-Performance Digital Marketing Agency & CMS
 
-Implement exactly the screenshot and nothing else
+This project is organized into two independent directories: **Frontend** and **Backend**.
 
-This project was built with [Lovable](https://lovable.dev).
+```
+pixel-perfect-replay-04882/
+├── frontend/             # Complete React / Vite Frontend Application & UI
+│   ├── src/              # All pages, components, hooks, styles, routes
+│   ├── public/           # Public static assets, images, icons
+│   ├── package.json      # Frontend dependencies & scripts
+│   ├── tsconfig.json     # Frontend TypeScript configuration
+│   ├── vite.config.ts    # Vite bundler configuration
+│   ├── .env.example      # Frontend environment template
+│   └── .env              # Configured with VITE_API_URL=http://localhost:5000/api
+│
+├── backend/              # Independent Express + TypeScript REST API Server
+│   ├── src/
+│   │   ├── server.ts     # Express application entry point (Port 5000)
+│   │   ├── routes/       # Auth, Articles, Services, Homepage, Downloader, Leads, Media
+│   │   ├── middleware/   # JWT Bearer authentication & Error handling
+│   │   ├── storage/      # Secure scrypt hashing, JSON store engine, CRUD
+│   │   ├── models/       # TypeScript interface schemas
+│   │   └── test/         # Automated Vitest backend tests
+│   ├── data/
+│   │   └── cms-store.json# Primary CMS persistent JSON database
+│   ├── uploads/          # User-uploaded media and assets
+│   ├── package.json      # Backend dependencies & scripts
+│   ├── tsconfig.json     # NodeNext TypeScript configuration
+│   ├── .env.example      # Backend environment template
+│   └── .env              # Configured with PORT=5000 & SESSION_SECRET
+│
+└── docs/
+    └── API_DOCUMENTATION.md  # Comprehensive API endpoint reference
+```
 
-**Live app**: https://pixel-perfect-replay-04882.lovable.app
+---
 
-## Build with Lovable
+## Quick Start (Running Both Services)
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/babc3aba-bace-45e9-a78b-f98e0b7e6e15).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+### 1. Backend Server (Express + TypeScript)
+In a terminal window:
+```bash
+cd backend
+npm install
 npm run dev
 ```
+- **Backend API Base URL**: `http://localhost:5000/api`
+- **Health Check**: `http://localhost:5000/api/health`
+
+### 2. Frontend Application (Vite + React)
+In a second terminal window:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+- **Website & CMS URL**: `http://localhost:8080`
+
+---
+
+## Key Features & Architecture
+
+### Frontend (`frontend/`)
+- **Public Website**: Modern landing pages for SEO, Google Ads, Social Media, Branding, Web Development, and Instagram Downloader tools.
+- **CMS Admin Suite**: Complete management dashboard for Articles, Services, Homepage, Downloader Tools, Website Leads, and Media Library.
+- **Zero Server Secrets**: Communicates purely via `frontend/src/lib/api-client.ts` over REST API with automatic JWT Bearer token authentication.
+
+### Backend (`backend/`)
+- **Security**: Memory-hard `scrypt` password hashing, timing-safe equality verification, brute-force rate-limiting, and temporary account lockout protection.
+- **REST Endpoints**: Modular Express routers for `/api/auth`, `/api/articles`, `/api/services`, `/api/homepage`, `/api/downloader`, `/api/leads`, `/api/media`, `/api/settings`.
+- **Database Engine**: Atomic persistence to `backend/data/cms-store.json`.
+- **Downloader Resolver**: Automated Instagram media extraction with graceful fallback.
+
+---
+
+## Detailed API Documentation
+See [API_DOCUMENTATION.md](file:///c:/Users/Dell/OneDrive/Desktop/New%20folder/pixel-perfect-replay-04882/docs/API_DOCUMENTATION.md) for full endpoint specifications, request payloads, and response examples.

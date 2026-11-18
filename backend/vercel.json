@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "outputDirectory": "dist",
   "builds": [
     {
       "src": "src/server.ts",
@@ -12,6 +13,10 @@
     }
   ],
   "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "src/server.ts"
+    },
     {
       "src": "/(.*)",
       "dest": "src/server.ts"

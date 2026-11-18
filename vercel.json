@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "outputDirectory": "dist",
+  "builds": [
+    {
+      "src": "backend/src/server.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "backend/data/**"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backend/src/server.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "backend/src/server.ts"
+    }
+  ]
+}

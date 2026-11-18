@@ -14,6 +14,7 @@ import { downloaderRouter } from "./routes/downloader.routes.js";
 import { leadsRouter } from "./routes/leads.routes.js";
 import { mediaRouter } from "./routes/media.routes.js";
 import { settingsRouter } from "./routes/settings.routes.js";
+import { aiRouter } from "./routes/ai.routes.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 
 const app = express();
@@ -56,6 +57,7 @@ app.use("/api/downloader", downloaderRouter);
 app.use("/api/leads", leadsRouter);
 app.use("/api/media", mediaRouter);
 app.use("/api/settings", settingsRouter);
+app.use("/api/ai", aiRouter);
 
 // Global Error Handler
 app.use(errorHandler);

@@ -179,30 +179,20 @@ aiRouter.post("/marketing-audit", async (req, res) => {
         const ip = req.ip || req.socket.remoteAddress || "127.0.0.1";
         const userAgent = req.headers["user-agent"] || "";
 
-        saveWebsiteLead(
-          {
-            name: contactName || businessName,
-            phone: contactPhone || "",
-            email: contactEmail || "",
-            service: auditResult.recommendedServices[0] || "Google Ads & Performance Marketing",
-            budget: monthlyBudget,
-            company: businessName,
-            message: `[AI Growth Audit Generated]\nIndustry: ${industry}\nGoal: ${primaryGoal}\nWebsite/Social: ${websiteOrSocial || "N/A"}\nRecommended Budget Split: ${auditResult.channelRecommendations.map((c) => `${c.channel} (${c.budgetAllocationPercent}%)`).join(", ")}`,
-            formName: "AI Marketing Audit Tool",
-            formType: "audit",
-            sourceUrl: "/ai-audit",
-            notes: [
-              {
-                id: `note-${Date.now()}`,
-                authorName: "Gemini AI Audit Engine",
-                text: `Audited with Gemini 4 Hydrogen. Projected ROAS: ${auditResult.projectedMetrics.projectedRoas}, Est. CPA: ${auditResult.projectedMetrics.estimatedCpa}`,
-                createdAt: new Date().toISOString(),
-              },
-            ],
-          },
-          ip,
-          userAgent
-        );
+        saveWebsiteLead({
+          fullName: contactName || businessName,
+          phone: contactPhone || "",
+          email: contactEmail || "",
+          service: auditResult.recommendedServices[0] || "Google Ads & Performance Marketing",
+          budget: monthlyBudget,
+          businessName: businessName,
+          message: `[AI Growth Audit Generated]\nIndustry: ${industry}\nGoal: ${primaryGoal}\nWebsite/Social: ${websiteOrSocial || "N/A"}\nRecommended Budget Split: ${auditResult.channelRecommendations.map((c) => `${c.channel} (${c.budgetAllocationPercent}%)`).join(", ")}`,
+          formName: "AI Marketing Audit Tool",
+          formType: "consultation",
+          sourceUrl: "/ai-audit",
+          ipAddress: ip,
+          userAgent,
+        });
       } catch (leadErr) {
         console.error("Failed to automatically save AI Audit lead:", leadErr);
       }

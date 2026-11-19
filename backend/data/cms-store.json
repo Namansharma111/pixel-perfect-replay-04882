@@ -7,7 +7,7 @@
       "role": "admin",
       "passwordHash": "scrypt:727ddba141660263a92dfdef2160a40e:41015bfbc3fd5f6ff7da1671e6204e9d690f3321355985fbf8b98efef5d816260dacea3d614aafdacd3b7b9dee476904d5eb4b804dd0da92a9119ae42de02486",
       "createdAt": "2026-11-14T17:20:32.134Z",
-      "failedAttempts": 0
+      "failedAttempts": 1
     },
     {
       "id": "editor-1",
@@ -4300,6 +4300,22 @@
     "lastUpdatedAt": "2026-11-15T12:44:45.697Z"
   },
   "leads": [
+    {
+      "id": "lead-1795025456400-ldzu",
+      "fullName": "Test Lead User",
+      "phone": "+91 98765 43210",
+      "email": "test-1795025456400@example.com",
+      "service": "SEO Services",
+      "sourceUrl": "/contact",
+      "formName": "Contact Page Form",
+      "formType": "contact",
+      "status": "new",
+      "assignedTo": "Unassigned",
+      "notes": [],
+      "isRead": false,
+      "createdAt": "2026-11-18T18:10:56.400Z",
+      "updatedAt": "2026-11-18T18:10:56.400Z"
+    },
     {
       "id": "lead-1794761243026-eiib",
       "fullName": "Rohit Verma",
